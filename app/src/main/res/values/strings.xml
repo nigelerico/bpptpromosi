@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">bpptpromosi</string>
+    <string name="home">Home</string>
+    <string name="list">List</string>
+    <string name="search">Search</string>
+    <string name="help">Help</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="expanded_image_content_description">Expanded Image</string>
+    <string name="highlight_project_prospect">Highlight Project Prospect</string>
+    <string name="lihat_semua"><![CDATA[Lihat Semua >]]></string>
+    <string name="highlight_sektor">Highlight Sektor</string>
+</resources>
