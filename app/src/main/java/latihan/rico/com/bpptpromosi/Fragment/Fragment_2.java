@@ -2,9 +2,11 @@ package latihan.rico.com.bpptpromosi.Fragment;
 
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -25,6 +27,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
+
 import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterList;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterProspect;
@@ -38,15 +43,21 @@ public class Fragment_2 extends Fragment {
     RecyclerView recyclerView;
     ArrayList <ModelProspect> modelProspectList;
     ModelProspect mModelProspect;
-    ImageView imageView;
-
+    MaterialSearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =inflater.inflate(R.layout.fragment_fragment_2, container, false);
 
 
-        imageView= view.findViewById(R.id.ic_search);
+
+        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Material Search");
+        toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+
+        searchView = (MaterialSearchView) view.findViewById(R.id.search_view);
+
         recyclerView = view.findViewById(R.id.recycler_view_list);
         LinearLayoutManager mGridLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(mGridLayoutManager);
@@ -64,41 +75,15 @@ public class Fragment_2 extends Fragment {
         setHasOptionsMenu(true);
 
 
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent mIntent = new Intent(getContext(), SearchActivity.class);
-                startActivity(mIntent);
-            }
-        });
-
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        searchView.setQueryHint("Cari");
-        super.onCreateOptionsMenu(menu,inflater);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //method
-                return false;
-            }
-
-        });
-
+        getActivity().getMenuInflater().inflate(R.menu.menu_item, menu);
+        MenuItem item = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(item);
+        return;
     }
 
 
