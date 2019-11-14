@@ -8,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,16 +22,16 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+<<<<<<< Updated upstream
 
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
+=======
+>>>>>>> Stashed changes
 import latihan.rico.com.bpptpromosi.Adapter.AdapterList;
-import latihan.rico.com.bpptpromosi.Adapter.AdapterProspect;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.R;
 

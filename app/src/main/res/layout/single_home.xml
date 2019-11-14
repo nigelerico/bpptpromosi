@@ -12,9 +12,9 @@
         android:layout_gravity="center"
         android:layout_margin="4dp"
         android:focusable="true"
-        app:cardElevation="5dp"
         app:cardUseCompatPadding="true"
-        app:contentPadding="9dp">
+        app:cardElevation="4dp"
+        app:cardCornerRadius="7dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,6 +26,7 @@
                 android:id="@+id/gambar_buku"
                 android:layout_width="190dp"
                 android:layout_height="130dp"
+                android:layout_marginTop="5dp"
                 android:layout_gravity="center"
                 android:src="@mipmap/ic_launcher" />
 
@@ -59,7 +60,8 @@
                 android:text="Bidang"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
 
 
             <!--<RelativeLayout-->
