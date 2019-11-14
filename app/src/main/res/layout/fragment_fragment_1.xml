@@ -2,10 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="match_parent">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -31,24 +30,35 @@
                 android:contentDescription="@string/expanded_image_content_description"/>
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+                android:id="@+id/toolbar_bppt"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+
+                >
+
+            </androidx.appcompat.widget.Toolbar>
+
+
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
+
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/nested_scroll"
+        android:fillViewport="true">
+
 
         <RelativeLayout
             android:id="@+id/rl1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:padding="10dp">
 
             <androidx.cardview.widget.CardView
@@ -97,9 +107,7 @@
                 </RelativeLayout>
 
 
-
             </androidx.cardview.widget.CardView>
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -150,7 +158,6 @@
                 android:layout_below="@id/recycler_view"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
-
                 android:textStyle="bold"
                 android:textColor="@color/colorLightBlue"
                 android:text="@string/lihat_semua"/>
@@ -163,8 +170,11 @@
                 android:layout_marginTop="10dp"
                 android:nestedScrollingEnabled="false"
                 />
+
         </RelativeLayout>
 
+
     </androidx.core.widget.NestedScrollView>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

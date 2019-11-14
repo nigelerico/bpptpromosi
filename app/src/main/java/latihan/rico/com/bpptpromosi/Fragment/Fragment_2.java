@@ -39,20 +39,21 @@ import latihan.rico.com.bpptpromosi.R;
 public class Fragment_2 extends Fragment {
 
 
-    RecyclerView recyclerView;
-    ArrayList <ModelProspect> modelProspectList;
-    ModelProspect mModelProspect;
-    MaterialSearchView searchView;
+     RecyclerView recyclerView;
+     ArrayList <ModelProspect> modelProspectList;
+     ModelProspect mModelProspect;
+     MaterialSearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =inflater.inflate(R.layout.fragment_fragment_2, container, false);
 
 
+        setHasOptionsMenu(true);
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Material Search");
+        ((AppCompatActivity)getContext()).setSupportActionBar(toolbar);
+        ((AppCompatActivity)getContext()).getSupportActionBar().setTitle("List");
         toolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
         searchView = (MaterialSearchView) view.findViewById(R.id.search_view);
@@ -71,7 +72,6 @@ public class Fragment_2 extends Fragment {
 
         AdapterList myAdapter = new AdapterList(getContext(), modelProspectList);
         recyclerView.setAdapter(myAdapter);
-        setHasOptionsMenu(true);
 
 
         return view;
@@ -79,10 +79,25 @@ public class Fragment_2 extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        getActivity().getMenuInflater().inflate(R.menu.menu_item, menu);
-        MenuItem item = menu.findItem(R.id.action_search);
-        searchView.setMenuItem(item);
-        return;
+        inflater.inflate(R.menu.search, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView.setMenuItem(searchItem);
+
+        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //method
+                return false;
+            }
+
+        });
+
     }
 
 
