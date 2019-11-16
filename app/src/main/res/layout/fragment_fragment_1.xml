@@ -64,7 +64,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardview"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 app:cardBackgroundColor="@color/colorLightBlue"
                 app:cardUseCompatPadding="true"
                 app:cardElevation="4dp"
@@ -73,14 +73,13 @@
                 <RelativeLayout
                     android:id="@+id/relative_cardview"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sektor"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
                         android:id="@+id/txt_sektor"
                         android:textColor="@color/colorWhite">
                     </TextView>
@@ -89,8 +88,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="More >"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginTop="5dp"
                         android:textColor="@color/colorWhite"
                         android:layout_alignParentRight="true">
                     </TextView>
