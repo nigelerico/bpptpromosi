@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/expanded_toolbar_height"
                 android:src="@drawable/header"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="0.7"
                 android:contentDescription="@string/expanded_image_content_description"/>
@@ -80,7 +80,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sektor"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="3dp"
                         android:id="@+id/txt_sektor"
+                        android:fontFamily="sans-serif-condensed"
                         android:textColor="@color/colorWhite">
                     </TextView>
 
@@ -88,6 +91,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="More >"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="sans-serif-condensed"
                         android:textColor="@color/colorWhite"
                         android:layout_alignParentRight="true">
                     </TextView>
@@ -144,6 +150,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_below="@+id/recycler_view"
                 android:layout_marginTop="10dp"
+
                 android:textColor="@color/colorLightBlue"
                 android:textStyle="bold"
                 android:text="@string/highlight_sektor"/>
