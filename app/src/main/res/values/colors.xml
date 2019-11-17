@@ -8,4 +8,6 @@
     <color name="popUp">#54696666</color>
     <color name="light_grey">#808080</color>
     <color name="colorBlack">#000000</color>
+    <color name="bg">#E0E0E0</color>
+    <color name="card_bg">#E9E9E9</color>
 </resources>
