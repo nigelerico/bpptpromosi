@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -33,6 +34,8 @@ import java.util.List;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterProspect;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
@@ -41,7 +44,7 @@ import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
-public class Fragment_1 extends Fragment {
+public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetListener {
 
 
     Toolbar toolbar_bppt;
@@ -58,12 +61,14 @@ public class Fragment_1 extends Fragment {
     AdapterSektor adapterSektor;
     private static final String URL_SEKTOR = Server.URL_API + "ApiSektor.php";
 
-
+    TextView txt_more;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =inflater.inflate(R.layout.fragment_fragment_1, container, false);
+
+        txt_more = view.findViewById(R.id.txt_more);
 
         //setHasOptionsMenu(true);
 
@@ -112,6 +117,15 @@ public class Fragment_1 extends Fragment {
         AdapterProspect myAdapter2 = new AdapterProspect(getContext(), modelProspectList);
         recyclerView2.setAdapter(myAdapter2);
 
+
+        txt_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MoreActivity bottomSheet = new MoreActivity();
+                bottomSheet.show(getActivity().getSupportFragmentManager(), "More");
+            }
+        });
+
         return view;
 
     }
@@ -139,7 +153,7 @@ public class Fragment_1 extends Fragment {
                                 mSektor.add(new ModelSektor(
                                         jsonObject.getInt("id"),
                                         jsonObject.getString("value"),
-                                        Server.URL_GAMBAR +  jsonObject.getString("logo")));
+                                        jsonObject.getString("logo")));
 
                                 rv_sektor.setLayoutManager(new GridLayoutManager(getContext(),4));
                                 rv_sektor.setHasFixedSize(true);
@@ -160,4 +174,8 @@ public class Fragment_1 extends Fragment {
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
+    @Override
+    public void onButtonClicked(String text) {
+
+    }
 }
