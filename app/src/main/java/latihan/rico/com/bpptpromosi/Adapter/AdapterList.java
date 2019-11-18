@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,17 +14,18 @@ import java.util.List;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
+import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.R;
 
 public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
 
     private Context mContext;
-    private List<ModelProspect> prospects;
+    private List<ModelListSektor> sektors;
 
-    public AdapterList(Context mContext, ArrayList<ModelProspect> modelProspects){
+    public AdapterList(Context mContext, ArrayList<ModelListSektor> modelListSektors){
         this.mContext = mContext;
-        this.prospects = modelProspects;
+        this.sektors = modelListSektors;
     }
 
     @Override
@@ -38,12 +40,13 @@ public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
 
     @Override
     public void onBindViewHolder(final AdapterList.ViewHolder holder, final int position) {
-        final ModelProspect modelProspect = prospects.get(position);
-        holder.tv_nama.setText(modelProspect.getNama());
-        holder.tv_tempat.setText(modelProspect.getTempat());
-        holder.tv_bidang.setText(modelProspect.getBidang());
+        final ModelListSektor modelListSektor = sektors.get(position);
 
-        holder.cv.setOnClickListener(new View.OnClickListener() {
+        holder.tv_nama_sektor.setText(modelListSektor.getNama_sektor());
+        holder.tv_sektor.setText(modelListSektor.getAlamat_sektor());
+        holder.tv_bidang.setText(modelListSektor.getValue());
+
+        holder.cv_sektor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mIntent = new Intent(mContext, DetailActivity.class);
@@ -54,28 +57,32 @@ public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return prospects.size();
+        return sektors.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        CardView cv;
-        TextView tv_nama, tv_tempat, tv_bidang;
+//        CardView cv;
+//        TextView tv_nama, tv_tempat, tv_bidang;
+        CardView cv_sektor;
+        ImageView iv_gambar, iv_bidang, iv_centang;
+        TextView tv_nama_sektor, tv_sektor, tv_bidang;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cardview);
-            tv_nama = (TextView) itemView.findViewById(R.id.txt_nama);
-            tv_tempat = (TextView) itemView.findViewById(R.id.txt_tempat);
-            tv_bidang = (TextView) itemView.findViewById(R.id.txt_bidang);
-
-
+            cv_sektor = (CardView) itemView.findViewById(R.id.cv_sektor);
+            tv_nama_sektor = (TextView) itemView.findViewById(R.id.tv_nama_sektor);
+            tv_sektor = (TextView) itemView.findViewById(R.id.tv_sektor);
+            tv_bidang = (TextView) itemView.findViewById(R.id.tv_bidang);
+            iv_gambar = (ImageView) itemView.findViewById(R.id.iv_gambar);
+            iv_bidang = (ImageView) itemView.findViewById(R.id.iv_bidang);
+            iv_centang = (ImageView) itemView.findViewById(R.id.iv_centang);
         }
     }
 
     public void clear(){
-        prospects.clear();
+        sektors.clear();
         notifyDataSetChanged();
     }
 }

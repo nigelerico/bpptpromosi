@@ -1,142 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardview"
+        android:id="@+id/cv_sektor"
+        app:cardCornerRadius="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="4dp"
-        app:cardUseCompatPadding="true"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="7dp">
-        <LinearLayout
+        android:layout_height="150dp">
+
+        <RelativeLayout
+            android:padding="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_image"
+                android:layout_alignParentLeft="true"
+                app:cardCornerRadius="10dp"
+                android:layout_width="110dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_gambar"
+                    android:src="@drawable/sample"
+                    android:scaleType="fitXY"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/label_nama_sektor"
+                android:layout_toRightOf="@id/cv_image"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="80dp"
+                android:text="Nama Sektor"
+                android:textSize="10sp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/titik1"
+                android:layout_above="@+id/titik2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:background="#ffffff">
+                android:text=":"
+                android:textSize="10sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/label_nama_sektor"/>
 
-                <TextView
-                    android:id="@+id/textView_barang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toLeftOf="@id/textView_kirim"
-                    android:text="Nama :"
-                    android:layout_marginTop="5dp"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_nama_sektor"
+                android:layout_above="@+id/tv_sektor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum"
+                android:textSize="10sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/titik1"/>
 
-                <TextView
-                    android:id="@+id/txt_nama"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginTop="2dp"
-                    android:layout_toLeftOf="@id/txt_bidang"
-                    android:layout_below="@id/textView_barang"
-                    android:text="text"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/label_sektor"
+                android:layout_toRightOf="@id/cv_image"
+                android:layout_below="@+id/label_nama_sektor"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="80dp"
+                android:text="Sektor"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:id="@+id/textView_barang2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toLeftOf="@id/textView_status"
-                    android:layout_below="@id/txt_nama"
-                    android:layout_marginTop="2dp"
-                    android:layout_alignParentLeft="true"
-                    android:text="Tempat :"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    />
-                <TextView
-                    android:id="@+id/txt_tempat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_below="@id/textView_barang2"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@color/colorBlack"
-                    android:text="text"
-                    android:layout_toLeftOf="@id/txt_pemilik"
-                    android:textSize="14sp"
-                    android:layout_alignParentLeft="true"
-                    android:maxLines="2"
-                    android:ellipsize="end"
-                    />
+            <TextView
+                android:id="@+id/titik2"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="10sp"
+                android:layout_below="@id/label_nama_sektor"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/label_sektor"/>
 
-                <TextView
-                    android:id="@+id/textView_kirim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    android:text="Bidang :"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/textView_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@id/txt_bidang"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    android:text="Pemilik :"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_sektor"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum"
+                android:textSize="10sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_below="@+id/label_nama_sektor"
+                android:layout_toRightOf="@id/titik2"/>
 
-                <TextView
-                    android:id="@+id/txt_bidang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/textView_kirim"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
-                    android:text="Text"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="14sp" />
+            <TextView
+                android:id="@+id/label_bidang"
+                android:layout_toRightOf="@id/cv_image"
+                android:layout_below="@+id/label_sektor"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/colorBlack"
+                android:layout_width="80dp"
+                android:text="Bidang"
+                android:textSize="10sp"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:id="@+id/txt_pemilik"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="1"
-                    android:layout_below="@id/textView_status"
-                    android:text="text"
-                    android:layout_marginTop="2dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccent"
-                    android:layout_marginRight="10dp"
-                    android:textSize="14sp"
-                    />
+            <TextView
+                android:id="@+id/titik3"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textSize="10sp"
+                android:layout_below="@id/label_sektor"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_toRightOf="@id/label_bidang"/>
 
-            </RelativeLayout>
-        </LinearLayout>
+            <TextView
+                android:id="@+id/tv_bidang"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum"
+                android:textSize="10sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/colorBlack"
+                android:layout_below="@+id/label_sektor"
+                android:layout_toRightOf="@id/titik3"/>
+
+
+            <ImageView
+                android:id="@+id/iv_centang"
+                android:background="@drawable/centang"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:padding="20dp"/>
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_bidang"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/iconpariwisata"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+
+
     </androidx.cardview.widget.CardView>
-</LinearLayout>
+
+</RelativeLayout>
