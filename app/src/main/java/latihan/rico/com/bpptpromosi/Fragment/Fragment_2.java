@@ -32,6 +32,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
 
 import latihan.rico.com.bpptpromosi.Adapter.AdapterList;
+import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.R;
 
@@ -40,8 +41,8 @@ public class Fragment_2 extends Fragment {
 
 
      RecyclerView recyclerView;
-     ArrayList <ModelProspect> modelProspectList;
-     ModelProspect mModelProspect;
+     ArrayList <ModelListSektor> modelListSektors;
+     ModelListSektor mModelListSektor;
      MaterialSearchView searchView;
 
     @Override
@@ -62,15 +63,15 @@ public class Fragment_2 extends Fragment {
         LinearLayoutManager mGridLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         recyclerView.setLayoutManager(mGridLayoutManager);
 
-        modelProspectList = new ArrayList<>();
-        mModelProspect = new ModelProspect(1,"budi","sawah","pertanian",R.drawable.ic_launcher_background);
-        modelProspectList.add(mModelProspect);
-        mModelProspect = new ModelProspect(1,"laksmi","sawah","pertanian",R.drawable.ic_launcher_background);
-        modelProspectList.add(mModelProspect);
-        mModelProspect = new ModelProspect(1,"cindy","sawah","pertanian",R.drawable.ic_launcher_background);
-        modelProspectList.add(mModelProspect);
+        modelListSektors = new ArrayList<>();
+        mModelListSektor = new ModelListSektor(1,1,1,"Pantai Gemah", "Ngantang", "0810000", "Jono", "Keren", "yes", "Wisata Pantai");
+        modelListSektors.add(mModelListSektor);
+        mModelListSektor = new ModelListSektor(1,1,1,"Kampung Susu Dinasty", "Ngawi", "0810000", "Jaka", "Keren", "yes", "Wisata Buatan");
+        modelListSektors.add(mModelListSektor);
+        mModelListSektor = new ModelListSektor(1,1,1,"Pasanggrahan Agro Wilis", "Bululawang", "0810000", "Kim", "Keren", "yes", "Wisata Buatan");
+        modelListSektors.add(mModelListSektor);
 
-        AdapterList myAdapter = new AdapterList(getContext(), modelProspectList);
+        AdapterList myAdapter = new AdapterList(getContext(), modelListSektors);
         recyclerView.setAdapter(myAdapter);
 
 
