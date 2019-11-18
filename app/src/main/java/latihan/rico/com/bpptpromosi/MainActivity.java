@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_1;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_2;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_3;
@@ -16,7 +18,7 @@ import android.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener{
+        BottomNavigationView.OnNavigationItemSelectedListener, MoreActivity.BottomSheetListener{
 
     BottomNavigationView bottomNavigationView;
     private ActionBar toolbar;
@@ -68,5 +70,10 @@ public class MainActivity extends AppCompatActivity implements
                 fragment = new Fragment_4();
                 break;
         }   return loadFragment(fragment);
+    }
+
+    @Override
+    public void onButtonClicked(String text) {
+
     }
 }
