@@ -4,13 +4,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:padding="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_sektor"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="4dp"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="4dp">
 
         <RelativeLayout
             android:padding="10dp"
@@ -26,7 +28,7 @@
 
                 <ImageView
                     android:id="@+id/iv_gambar"
-                    android:src="@drawable/sample"
+
                     android:scaleType="fitXY"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"/>
@@ -154,7 +156,7 @@
         <ImageView
             android:id="@+id/iv_bidang"
             android:layout_marginLeft="100dp"
-            android:src="@drawable/iconpariwisata"
+            android:src="@mipmap/iconpariwisata"
             android:layout_width="35dp"
             android:layout_height="35dp"/>
 

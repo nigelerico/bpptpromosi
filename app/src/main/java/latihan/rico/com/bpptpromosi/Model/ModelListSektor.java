@@ -1,7 +1,7 @@
 package latihan.rico.com.bpptpromosi.Model;
 
 public class ModelListSektor {
-    public ModelListSektor(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String value) {
+    public ModelListSektor(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi,String master_sektor ,String value) {
         this.id = id;
         this.id_sektor = id_sektor;
         this.id_subsektor = id_subsektor;
@@ -11,6 +11,7 @@ public class ModelListSektor {
         this.nama_pengelola = nama_pengelola;
         this.deskripsi = deskripsi;
         this.statusVerifikasi = statusVerifikasi;
+        this.master_sektor = master_sektor;
         this.value = value;
     }
 
@@ -86,6 +87,15 @@ public class ModelListSektor {
         this.statusVerifikasi = statusVerifikasi;
     }
 
+
+    public String getMaster_sektor() {
+        return master_sektor;
+    }
+
+    public void setMaster_sektor(String master_sektor) {
+        this.master_sektor = value;
+    }
+
     public String getValue() {
         return value;
     }
@@ -103,5 +113,6 @@ public class ModelListSektor {
     public String nama_pengelola;
     public String deskripsi;
     public String statusVerifikasi;
+    public String master_sektor;
     public String value;
 }
