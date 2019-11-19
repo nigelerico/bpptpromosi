@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import latihan.rico.com.bpptpromosi.R;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -13,5 +14,9 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
 
+    }
+
+    public void back(View view){
+        super.onBackPressed();
     }
 }
