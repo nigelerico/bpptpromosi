@@ -108,7 +108,8 @@ public class Fragment_2 extends Fragment {
                                         jsonObject.getString("deskripsi"),
                                         jsonObject.getString("statusVerifikasi"),
                                         jsonObject.getString("nama_idsektor"),
-                                        jsonObject.getString("nama_idsubsektor")));
+                                        jsonObject.getString("nama_idsubsektor"),
+                                        jsonObject.getString("directory")));
 
                                 rv_sektor.setLayoutManager(new LinearLayoutManager(getContext()));
                                 rv_sektor.setHasFixedSize(true);

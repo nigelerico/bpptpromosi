@@ -1,7 +1,21 @@
 package latihan.rico.com.bpptpromosi.Model;
 
 public class ModelListSektor {
-    public ModelListSektor(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi,String master_sektor ,String value) {
+
+    public int id;
+    public int id_sektor;
+    public int id_subsektor;
+    public String nama_sektor;
+    public String alamat_sektor;
+    public String telepon_sektor;
+    public String nama_pengelola;
+    public String deskripsi;
+    public String statusVerifikasi;
+    public String master_sektor;
+    public String value;
+    public String logo;
+
+    public ModelListSektor(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String master_sektor, String value, String logo) {
         this.id = id;
         this.id_sektor = id_sektor;
         this.id_subsektor = id_subsektor;
@@ -13,6 +27,7 @@ public class ModelListSektor {
         this.statusVerifikasi = statusVerifikasi;
         this.master_sektor = master_sektor;
         this.value = value;
+        this.logo = logo;
     }
 
     public int getId() {
@@ -87,13 +102,12 @@ public class ModelListSektor {
         this.statusVerifikasi = statusVerifikasi;
     }
 
-
     public String getMaster_sektor() {
         return master_sektor;
     }
 
     public void setMaster_sektor(String master_sektor) {
-        this.master_sektor = value;
+        this.master_sektor = master_sektor;
     }
 
     public String getValue() {
@@ -104,15 +118,11 @@ public class ModelListSektor {
         this.value = value;
     }
 
-    public int id;
-    public int id_sektor;
-    public int id_subsektor;
-    public String nama_sektor;
-    public String alamat_sektor;
-    public String telepon_sektor;
-    public String nama_pengelola;
-    public String deskripsi;
-    public String statusVerifikasi;
-    public String master_sektor;
-    public String value;
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 }

@@ -106,6 +106,25 @@ public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
                 return params;
             }
         };
+
+
+        ImageLoader imageLoader = MySingleton.getInstance(mContext).getImageLoader();
+        imageLoader.get(sektors.get(position).getLogo(), new ImageLoader.ImageListener() {
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                holder.iv_bidang.setImageBitmap(response.getBitmap());
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        if(modelListSektor.getStatusVerifikasi().equals("Belum Terverifikasi")){
+            holder.iv_centang.setVisibility(View.GONE);
+        }
+
         MySingleton.getInstance(mContext).addToRequestQueue(stringRequest);
 
         holder.tv_nama_sektor.setText(modelListSektor.getNama_sektor());
