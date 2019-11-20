@@ -134,8 +134,16 @@ public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
         holder.cv_sektor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent mIntent = new Intent(mContext, DetailActivity.class);
-                view.getContext().startActivity(mIntent);
+                Intent intent = new Intent(mContext.getApplicationContext(), DetailActivity.class);
+                intent.putExtra("id", modelListSektor.getId());
+                intent.putExtra("nama_sektor", modelListSektor.getNama_sektor());
+                intent.putExtra("sektor", modelListSektor.getMaster_sektor());
+                intent.putExtra("bidang", modelListSektor.getValue());
+                intent.putExtra("alamat", modelListSektor.getAlamat_sektor());
+                intent.putExtra("pemilik", modelListSektor.getNama_pengelola());
+                intent.putExtra("deskripsi", modelListSektor.getDeskripsi());
+
+                view.getContext().startActivity(intent);
             }
         });
     }

@@ -105,7 +105,7 @@ public class Fragment_2 extends Fragment {
                                         jsonObject.getString("alamat_sektor"),
                                         jsonObject.getString("telepon_sektor"),
                                         jsonObject.getString("nama_pengelola"),
-                                        jsonObject.getString("deskripsi"),
+                                        jsonObject.getString("deskripsifix"),
                                         jsonObject.getString("statusVerifikasi"),
                                         jsonObject.getString("nama_idsektor"),
                                         jsonObject.getString("nama_idsubsektor"),

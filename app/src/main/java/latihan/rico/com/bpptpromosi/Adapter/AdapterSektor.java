@@ -1,16 +1,20 @@
 package latihan.rico.com.bpptpromosi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
+import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
+import latihan.rico.com.bpptpromosi.Activity.FilterSektorActivity;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
 import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
@@ -56,6 +60,15 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
 
         holder.tv_sektor.setText(modelSektor.getValue());
 
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext.getApplicationContext(), FilterSektorActivity.class);
+                intent.putExtra("id", modelSektor.getId());
+                view.getContext().startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -68,13 +81,14 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
 
         ImageView logo;
         TextView tv_sektor;
+        RelativeLayout relativeLayout;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             tv_sektor = (TextView) itemView.findViewById(R.id.txt_sektor);
             logo = (ImageView) itemView.findViewById(R.id.iv_logo);
-
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.relative_icon_sektor);
 
         }
     }
