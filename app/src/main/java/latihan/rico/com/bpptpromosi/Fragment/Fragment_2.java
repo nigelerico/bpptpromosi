@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -152,6 +153,25 @@ public class Fragment_2 extends Fragment {
         });
 
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_filter) {
+             Toast.makeText(getContext(), "tes", Toast.LENGTH_SHORT).show();
+
+
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 
 }
