@@ -10,6 +10,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary" />
 
+
+
     <com.miguelcatalan.materialsearchview.MaterialSearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
@@ -20,6 +22,9 @@
         app:searchBackIcon="@drawable/ic_arrow_back_black_24dp"
         android:textColor="@color/colorBlack"
         android:textColorHint="@color/colorBlack" />
+
+
+
 
 
 

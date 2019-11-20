@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_explore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore Sektor"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorBlack"  />
+
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_alignParentRight="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_error" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyeview_sektor"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_explore">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btn_showall"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorLightBlue"
+        android:textColor="@color/colorWhite"
+        android:text="Show All"
+        android:textStyle="bold"
+        android:layout_below="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>

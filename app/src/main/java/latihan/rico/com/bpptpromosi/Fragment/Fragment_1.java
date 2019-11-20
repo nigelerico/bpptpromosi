@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,7 +45,7 @@ import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
-public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetListener {
+public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetListener, AdapterSektor.onListClickedRowListner {
 
 
     Toolbar toolbar_bppt;
@@ -177,5 +178,10 @@ public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetList
     @Override
     public void onButtonClicked(String text) {
 
+    }
+
+    @Override
+    public void onListSelected(int listposition) {
+        Toast.makeText(getContext(),String.valueOf(mSektor.get(listposition).getId()), Toast.LENGTH_SHORT).show();
     }
 }

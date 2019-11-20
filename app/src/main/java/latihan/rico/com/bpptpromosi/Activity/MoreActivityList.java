@@ -27,27 +27,30 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
+import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorList;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_1;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
 import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
-public class MoreActivity extends BottomSheetDialogFragment{
+public class MoreActivityList extends BottomSheetDialogFragment implements  AdapterSektorList.onListClickedRowListner{
 
     private BottomSheetListener mListener;
     RecyclerView rv_sektor;
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
-    AdapterSektor adapterSektor;
+    AdapterSektorList adapterSektorList;
     private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull.php";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_more, container, false);
+        View v = inflater.inflate(R.layout.fragment_more_activity_list, container, false);
         rv_sektor = v.findViewById(R.id.recyeview_sektor);
 
-       getSektorFull();
+
+
+        getSektorFull();
 
         return v;
     }
@@ -55,7 +58,8 @@ public class MoreActivity extends BottomSheetDialogFragment{
 
 
     public interface BottomSheetListener {
-        void onButtonClicked(String text);
+        void onCoba(String text);
+//        void onListSelected(int mPosition);
     }
 
 
@@ -92,9 +96,9 @@ public class MoreActivity extends BottomSheetDialogFragment{
 
                                 rv_sektor.setLayoutManager(new GridLayoutManager(getContext(),4));
                                 rv_sektor.setHasFixedSize(true);
-                                adapterSektor = new AdapterSektor(getContext(), mSektor);
-                                rv_sektor.setAdapter(adapterSektor);
-                                adapterSektor.notifyDataSetChanged();
+                                adapterSektorList = new AdapterSektorList(getContext(), mSektor, MoreActivityList.this);
+                                rv_sektor.setAdapter(adapterSektorList);
+                                adapterSektorList.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -108,6 +112,16 @@ public class MoreActivity extends BottomSheetDialogFragment{
         });
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
+
+    @Override
+    public void onListSelected(int mposition) {
+        mListener.onCoba("Coba");
+
+//        dismiss();
+//        Toast.makeText(getContext(),String.valueOf(mSektor.get(mposition).getId()), Toast.LENGTH_SHORT).show();
+    }
+
+
 
 
 }

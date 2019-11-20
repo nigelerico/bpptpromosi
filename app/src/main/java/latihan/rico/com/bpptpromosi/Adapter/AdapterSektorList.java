@@ -21,16 +21,16 @@ import latihan.rico.com.bpptpromosi.Model.ModelSektor;
 import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
-public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolder>{
+public class AdapterSektorList  extends RecyclerView.Adapter<AdapterSektorList.ViewHolder>{
 
     private Context mContext;
     private List<ModelSektor> sektors;
+    onListClickedRowListner listner;
 
-
-    public AdapterSektor(Context mContext, ArrayList<ModelSektor> modelSektors){
+    public AdapterSektorList(Context mContext, ArrayList<ModelSektor> modelSektors,onListClickedRowListner listner){
         this.mContext = mContext;
         this.sektors = modelSektors;
-
+        this.listner = listner;
 
     }
 
@@ -39,9 +39,9 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
     }
 
     @Override
-    public AdapterSektor.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterSektorList.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_sector, parent, false);
-        AdapterSektor.ViewHolder vh = new AdapterSektor.ViewHolder(mView); // pass the view to View Holder
+        AdapterSektorList.ViewHolder vh = new AdapterSektorList.ViewHolder(mView); // pass the view to View Holder
 
 
         return vh;
@@ -49,7 +49,7 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
 
 
     @Override
-    public void onBindViewHolder(final AdapterSektor.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final AdapterSektorList.ViewHolder holder, final int position) {
         final ModelSektor modelSektor = sektors.get(position);
 
 
@@ -73,17 +73,14 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext.getApplicationContext(), FilterSektorActivity.class);
-                intent.putExtra("id", modelSektor.getId());
-                view.getContext().startActivity(intent);
-               // Toast.makeText(mContext, "" + sektors.get(position).getId(), Toast.LENGTH_SHORT).show();
-
+//                Intent intent = new Intent(mContext.getApplicationContext(), FilterSektorActivity.class);
+//                intent.putExtra("id", modelSektor.getId());
+//                view.getContext().startActivity(intent);
+                // Toast.makeText(mContext, "" + sektors.get(position).getId(), Toast.LENGTH_SHORT).show();
+                listner.onListSelected(position);
             }
         });
-
     }
-
-
 
     @Override
     public int getItemCount() {
