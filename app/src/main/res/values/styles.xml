@@ -22,5 +22,7 @@
     <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
     </style>
 
+    <style name="splash" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+
 
 </resources>
