@@ -1,4 +1,4 @@
-package latihan.rico.com.bpptpromosi;
+package latihan.rico.com.bpptpromosi.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
-import latihan.rico.com.bpptpromosi.Activity.MoreActivityList;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_1;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_2;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_3;
 import latihan.rico.com.bpptpromosi.Fragment.Fragment_4;
+import latihan.rico.com.bpptpromosi.R;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -20,7 +20,7 @@ import android.widget.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements
-        BottomNavigationView.OnNavigationItemSelectedListener, MoreActivity.BottomSheetListener, MoreActivityList.BottomSheetListener {
+        BottomNavigationView.OnNavigationItemSelectedListener, MoreActivity.BottomSheetListener{
 
     BottomNavigationView bottomNavigationView;
     TextView tv;
@@ -80,14 +80,4 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    @Override
-    public void onCoba(String text) {
-
-    }
-
-
-//    @Override
-//    public void onListSelected(int mPosition) {
-//
-//    }
 }

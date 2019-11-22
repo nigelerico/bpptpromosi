@@ -29,14 +29,10 @@ import java.util.Map;
 public class DetailActivity extends AppCompatActivity {
 
 
-    String nama_sektor,sekor,bidang,alamat,pemilik,deskripsi;
-
+    String nama_sektor,sekor,bidang,alamat,pemilik,deskripsi,logo,status;
     TextView tv_namasektor, tv_sektor, tv_bidang, tv_alamat, tv_pemilik, tv_deskripsi;
-
-    ImageView gambar;
-
+    ImageView gambar,iv_icon, iv_centang;
     private static final String URL_FOTOLISTSEKTOR =  Server.URL_API + "ApiListSektorImage.php";
-
     int id;
 
 
@@ -46,6 +42,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        iv_icon  = (ImageView) findViewById(R.id.iv_icon);
+        iv_centang  = (ImageView) findViewById(R.id.iv_centang);
         tv_namasektor = (TextView) findViewById(R.id.tv_nama_sektor);
         tv_sektor  = (TextView) findViewById(R.id.tv_sektor);
         tv_bidang  = (TextView) findViewById(R.id.tv_bidang);
@@ -55,7 +53,6 @@ public class DetailActivity extends AppCompatActivity {
         gambar = (ImageView) findViewById(R.id.iv_gambar);
 
         Intent intent = getIntent();
-        // 2. get message value from intent
         id = intent.getIntExtra("id",0);
         nama_sektor = intent.getStringExtra("nama_sektor");
         sekor = intent.getStringExtra("sektor");
@@ -63,6 +60,8 @@ public class DetailActivity extends AppCompatActivity {
         alamat = intent.getStringExtra("alamat");
         pemilik = intent.getStringExtra("pemilik");
         deskripsi = intent.getStringExtra("deskripsi");
+        logo = intent.getStringExtra("logo");
+        status = intent.getStringExtra("status");
 
 
         tv_namasektor.setText("Nama Sektor : "+nama_sektor);
@@ -72,14 +71,20 @@ public class DetailActivity extends AppCompatActivity {
         tv_pemilik.setText("Pemilik : "+pemilik);
         tv_deskripsi.setText(Html.fromHtml(deskripsi));
 
-        detailsektor();
+        gambarSektor();
+
+        showIcon(logo);
+
+        if(status.equals("Belum Terverifikasi")){
+           iv_centang.setVisibility(View.GONE);
+        }
 
 
     }
 
 
 
-    private void detailsektor() {
+    private void  gambarSektor() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_FOTOLISTSEKTOR , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -103,7 +108,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(getApplicationContext(),"Error Bro",Toast.LENGTH_LONG ).show();
+                Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_LONG ).show();
             }
         }){
 
@@ -126,6 +131,22 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                 gambar.setImageBitmap(response.getBitmap());
+            }
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+    }
+
+
+    public void showIcon(String linkImage){
+        ImageLoader imageLoader = MySingleton.getInstance(this.getApplicationContext()).getImageLoader();
+        imageLoader.get(linkImage, new ImageLoader.ImageListener() {
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                iv_icon.setImageBitmap(response.getBitmap());
             }
 
             @Override

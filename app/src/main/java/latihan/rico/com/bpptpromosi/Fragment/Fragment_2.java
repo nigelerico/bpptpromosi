@@ -24,7 +24,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,11 +50,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
-import latihan.rico.com.bpptpromosi.Activity.MoreActivityList;
 
 import latihan.rico.com.bpptpromosi.Adapter.AdapterList;
-import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorList;
 import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
@@ -82,13 +78,13 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
     private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull.php";
 
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
-
-    Boolean status = true;
     SwipeRefreshLayout swipe;
     int id, temp;
+    Boolean status = true;
     Snackbar snackbar;
+
     @Override
-    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =inflater.inflate(R.layout.fragment_fragment_2, container, false);
 
 
@@ -110,11 +106,9 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
                     @Override
                     public void run() {
                         swipe.setRefreshing(false);
-
-                        if (status == true) {
+                        if (status==true){
                             getSektorList();
-                        } else if (status == false){
-                           // Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                        } else if (status==false) {
                             selectAPI(id-1);
                         }
                     }
@@ -123,7 +117,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
         });
 
         snackbar = Snackbar
-                .make(container, "Pencarian Tidak Ditemukan", Snackbar.LENGTH_LONG);
+                .make(container, "Pencarian  Tidak Ditemukan", Snackbar.LENGTH_LONG);
 
         getSektorList();
 
@@ -209,7 +203,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 //            MoreActivityList bottomSheet = new MoreActivityList();
 //            bottomSheet.show(getActivity().getSupportFragmentManager(), "More");
 
-            openDialog(R.layout.fragment_more_activity_list);
+            openDialog(R.layout.dialog_filter);
             return true;
         }
 
@@ -290,19 +284,18 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
     @Override
     public void onListSelected(final int mposition) {
-        id = mSektor.get(mposition).getId();
-
-        //Toast.makeText(getContext(),String.valueOf(mSektor.get(mposition).getId()), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),String.valueOf(mSektor.get(mposition).getId()), Toast.LENGTH_SHORT).show();
+        id=mSektor.get(mposition).getId();
         selectAPI(mposition);
     }
 
     public void selectAPI(final int mposition) {
-        status = false;
+        status=false;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEKTOR_LIST_WHERE,
                 new Response.Listener<String>() {
                     public void onResponse(String response) {
                         Log.d("json", response.toString());
-                        temp = 0;
+                        temp=0;
                         modelListSektors.clear();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
@@ -330,7 +323,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
                                 adapterList.notifyDataSetChanged();
 
                             }
-                            if(temp == 0){
+                            if (temp == 0){
                                 snackbar.show();
                             }
                         } catch (JSONException e) {

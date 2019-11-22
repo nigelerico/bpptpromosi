@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Detail Sektor"
-                    android:textSize="15dp"
+                    android:textSize="8pt"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"/>
 
@@ -112,20 +112,20 @@
                     <ImageView
                         android:id="@+id/iv_centang"
                         android:src="@drawable/centang"
-                        android:layout_alignParentRight="true"
                         android:layout_alignParentTop="true"
                         android:layout_width="30dp"
+                        android:layout_toLeftOf="@id/iv_icon"
                         android:layout_height="30dp"
                         android:layout_marginRight="10dp"/>
 
                     <ImageView
+                        android:id="@+id/iv_icon"
                         android:src="@mipmap/iconpariwisata"
-                        android:layout_toLeftOf="@id/iv_centang"
                         android:layout_alignParentTop="true"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginRight="10dp"/>
-
+                        android:layout_alignParentRight="true"
+                       />
 
 
                     <TextView
