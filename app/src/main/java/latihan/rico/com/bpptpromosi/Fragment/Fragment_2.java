@@ -13,6 +13,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ import java.util.Map;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import com.android.volley.AuthFailureError;
@@ -41,6 +44,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
@@ -79,9 +83,12 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
 
-
+    Boolean status = true;
+    SwipeRefreshLayout swipe;
+    int id, temp;
+    Snackbar snackbar;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         final View view =inflater.inflate(R.layout.fragment_fragment_2, container, false);
 
 
@@ -94,6 +101,29 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
         searchView = (MaterialSearchView) view.findViewById(R.id.search_view);
         rv_sektor = (RecyclerView) view.findViewById(R.id.recycler_view_list);
+        swipe = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe.setRefreshing(false);
+
+                        if (status == true) {
+                            getSektorList();
+                        } else if (status == false){
+                           // Toast.makeText(getContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+                            selectAPI(id-1);
+                        }
+                    }
+                }, 1000);
+            }
+        });
+
+        snackbar = Snackbar
+                .make(container, "Pencarian Tidak Ditemukan", Snackbar.LENGTH_LONG);
 
         getSektorList();
 
@@ -102,7 +132,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
 
     private void getSektorList() {
-
+        status = true;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_SEKTOR_LIST,
                 new Response.Listener<String>() {
                     public void onResponse(String response){
@@ -260,17 +290,25 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
     @Override
     public void onListSelected(final int mposition) {
-//        Toast.makeText(getContext(),String.valueOf(mSektor.get(mposition).getId()), Toast.LENGTH_SHORT).show();
+        id = mSektor.get(mposition).getId();
+
+        //Toast.makeText(getContext(),String.valueOf(mSektor.get(mposition).getId()), Toast.LENGTH_SHORT).show();
+        selectAPI(mposition);
+    }
+
+    public void selectAPI(final int mposition) {
+        status = false;
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SEKTOR_LIST_WHERE,
                 new Response.Listener<String>() {
                     public void onResponse(String response) {
                         Log.d("json", response.toString());
+                        temp = 0;
                         modelListSektors.clear();
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
+                                temp++;
                                 modelListSektors.add(new ModelListSektor(
                                         jsonObject.getInt("id"),
                                         jsonObject.getInt("id_sektor"),
@@ -291,6 +329,9 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
                                 rv_sektor.setAdapter(adapterList);
                                 adapterList.notifyDataSetChanged();
 
+                            }
+                            if(temp == 0){
+                                snackbar.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
