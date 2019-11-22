@@ -23,9 +23,6 @@
         android:textColor="@color/colorBlack"
         android:textColorHint="@color/colorBlack" />
 
-
-
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe"
             android:layout_width="match_parent"

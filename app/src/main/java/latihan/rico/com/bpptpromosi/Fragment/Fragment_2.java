@@ -83,6 +83,8 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
     Boolean status = true;
     Snackbar snackbar;
 
+  
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =inflater.inflate(R.layout.fragment_fragment_2, container, false);
