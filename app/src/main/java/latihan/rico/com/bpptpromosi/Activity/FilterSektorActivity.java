@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,7 +36,8 @@ public class FilterSektorActivity extends AppCompatActivity {
     ArrayList<ModelListSektor> modelListSektors = new ArrayList<>();
     AdapterList adapterList;
     private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektorWhereSektor.php";
-
+    String value;
+    TextView tv_sektor;
     int id;
 
 
@@ -45,13 +47,15 @@ public class FilterSektorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filter_sektor);
 
         rv_sektor = (RecyclerView) findViewById(R.id.recycler_view_list);
+        tv_sektor = (TextView) findViewById(R.id.tv_sektor);
 
         Intent intent = getIntent();
-        // 2. get message value from intent
         id = intent.getIntExtra("id",0);
-       // Toast.makeText(getApplicationContext(), String.valueOf(id), Toast.LENGTH_SHORT).show();
+        value = intent.getStringExtra("value");
 
         getSektorList();
+
+        tv_sektor.setText("Sektor "+value);
     }
 
     private void getSektorList() {

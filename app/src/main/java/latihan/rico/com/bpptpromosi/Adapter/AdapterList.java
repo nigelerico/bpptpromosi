@@ -136,13 +136,16 @@ public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
             public void onClick(View view) {
                 Intent intent = new Intent(mContext.getApplicationContext(), DetailActivity.class);
                 intent.putExtra("id", modelListSektor.getId());
+                intent.putExtra("id_sektor", modelListSektor.getId_sektor());
+                intent.putExtra("id_sub_sektor", modelListSektor.getId_subsektor());
                 intent.putExtra("nama_sektor", modelListSektor.getNama_sektor());
                 intent.putExtra("sektor", modelListSektor.getMaster_sektor());
                 intent.putExtra("bidang", modelListSektor.getValue());
                 intent.putExtra("alamat", modelListSektor.getAlamat_sektor());
                 intent.putExtra("pemilik", modelListSektor.getNama_pengelola());
                 intent.putExtra("deskripsi", modelListSektor.getDeskripsi());
-
+                intent.putExtra("logo", modelListSektor.getLogo());
+                intent.putExtra("status", modelListSektor.getStatusVerifikasi());
                 view.getContext().startActivity(intent);
             }
         });

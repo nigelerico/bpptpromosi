@@ -1,7 +1,6 @@
 package latihan.rico.com.bpptpromosi.Fragment;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -20,11 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -47,11 +42,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
-import latihan.rico.com.bpptpromosi.Activity.MoreActivityList;
-
 import latihan.rico.com.bpptpromosi.Adapter.AdapterList;
-import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorList;
 import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
@@ -179,7 +170,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 //            MoreActivityList bottomSheet = new MoreActivityList();
 //            bottomSheet.show(getActivity().getSupportFragmentManager(), "More");
 
-            openDialog(R.layout.fragment_more_activity_list);
+            openDialog(R.layout.dialog_filter);
             return true;
         }
 

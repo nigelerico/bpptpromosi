@@ -75,6 +75,7 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
             public void onClick(View view) {
                 Intent intent = new Intent(mContext.getApplicationContext(), FilterSektorActivity.class);
                 intent.putExtra("id", modelSektor.getId());
+                intent.putExtra("value", modelSektor.getValue());
                 view.getContext().startActivity(intent);
                // Toast.makeText(mContext, "" + sektors.get(position).getId(), Toast.LENGTH_SHORT).show();
 
