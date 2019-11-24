@@ -5,17 +5,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
-import latihan.rico.com.bpptpromosi.Fragment.Fragment_1;
-import latihan.rico.com.bpptpromosi.Fragment.Fragment_2;
-import latihan.rico.com.bpptpromosi.Fragment.Fragment_3;
-import latihan.rico.com.bpptpromosi.Fragment.Fragment_4;
+import latihan.rico.com.bpptpromosi.Fragment.ListFragment;
+import latihan.rico.com.bpptpromosi.Fragment.SearchFragment;
+import latihan.rico.com.bpptpromosi.Fragment.RealisasiFragment;
+import latihan.rico.com.bpptpromosi.Fragment.HelpFragment;
+import latihan.rico.com.bpptpromosi.Fragment.HomeFragment;
 import latihan.rico.com.bpptpromosi.R;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements
 
 //       toolbar.hide();
 
-        loadFragment(new Fragment_1());// inisialisasi BottomNavigaionView
+        loadFragment(new HomeFragment());// inisialisasi BottomNavigaionView
         bottomNavigationView = findViewById(R.id.bottom_navigation);// beri listener pada saat item/menu bottomnavigation terpilih
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 //        toolbar.setTitle("Home");
@@ -58,19 +57,23 @@ public class MainActivity extends AppCompatActivity implements
         Fragment fragment = null;   switch (menuItem.getItemId()){
             case R.id.home_menu:
               //  toolbar.hide();
-                fragment = new Fragment_1();
+                fragment = new HomeFragment();
                 break;
             case R.id.list_menu:
              //   toolbar.hide();
-                fragment = new Fragment_2();
+                fragment = new ListFragment();
                 break;
             case R.id.search_menu:
               //  toolbar.show();
-                fragment = new Fragment_3();
+                fragment = new SearchFragment();
+                break;
+            case R.id.realisasi_menu:
+                //  toolbar.show();
+                fragment = new RealisasiFragment();
                 break;
             case R.id.help_menu:
                // toolbar.show();
-                fragment = new Fragment_4();
+                fragment = new HelpFragment();
                 break;
         }   return loadFragment(fragment);
     }

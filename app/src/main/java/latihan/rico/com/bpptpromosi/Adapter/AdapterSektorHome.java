@@ -1,6 +1,7 @@
 package latihan.rico.com.bpptpromosi.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
 import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.R;
@@ -111,6 +113,24 @@ public class AdapterSektorHome extends RecyclerView.Adapter<AdapterSektorHome.Vi
         holder.tv_nama_sektor.setText(modelListSektor.getNama_sektor());
         holder.tv_sektor.setText(modelListSektor.getMaster_sektor());
         holder.tv_bidang.setText(modelListSektor.getValue());
+        holder.cv_sektor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext.getApplicationContext(), DetailActivity.class);
+                intent.putExtra("id", modelListSektor.getId());
+                intent.putExtra("id_sektor", modelListSektor.getId_sektor());
+                intent.putExtra("id_sub_sektor", modelListSektor.getId_subsektor());
+                intent.putExtra("nama_sektor", modelListSektor.getNama_sektor());
+                intent.putExtra("sektor", modelListSektor.getMaster_sektor());
+                intent.putExtra("bidang", modelListSektor.getValue());
+                intent.putExtra("alamat", modelListSektor.getAlamat_sektor());
+                intent.putExtra("pemilik", modelListSektor.getNama_pengelola());
+                intent.putExtra("deskripsi", modelListSektor.getDeskripsi());
+                intent.putExtra("logo", modelListSektor.getLogo());
+                intent.putExtra("status", modelListSektor.getStatusVerifikasi());
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

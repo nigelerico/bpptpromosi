@@ -27,7 +27,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
-import latihan.rico.com.bpptpromosi.Fragment.Fragment_1;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
 import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;

@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +34,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
-import latihan.rico.com.bpptpromosi.Adapter.AdapterList;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterProspectHome;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorHome;
@@ -46,7 +44,7 @@ import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
-public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetListener, AdapterSektor.onListClickedRowListner {
+public class HomeFragment extends Fragment implements MoreActivity.BottomSheetListener, AdapterSektor.onListClickedRowListner {
 
 
     Toolbar toolbar_bppt;
@@ -71,7 +69,7 @@ public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetList
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view =inflater.inflate(R.layout.fragment_fragment_1, container, false);
+        final View view =inflater.inflate(R.layout.fragment_home, container, false);
 
         txt_more = view.findViewById(R.id.txt_more);
 
@@ -234,7 +232,7 @@ public class Fragment_1 extends Fragment implements MoreActivity.BottomSheetList
                                 recyclerView2.setHasFixedSize(true);
                                 adapterSektorHome = new AdapterSektorHome(getContext(), modelListSektors);
                                 recyclerView2.setAdapter(adapterSektorHome);
-                                adapterProspectHome.notifyDataSetChanged();
+                                adapterSektorHome.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

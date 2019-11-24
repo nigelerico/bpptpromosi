@@ -1,7 +1,6 @@
 package latihan.rico.com.bpptpromosi.Fragment;
 
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -21,11 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -60,7 +55,7 @@ import latihan.rico.com.bpptpromosi.Server.Server;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
 
-public class Fragment_2 extends Fragment implements  AdapterSektorList.onListClickedRowListner{
+public class ListFragment extends Fragment implements  AdapterSektorList.onListClickedRowListner{
 
     AlertDialog.Builder dialogBuilder;
     AlertDialog alertDialog;
@@ -87,7 +82,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view =inflater.inflate(R.layout.fragment_fragment_2, container, false);
+        final View view =inflater.inflate(R.layout.fragment_list, container, false);
 
 
         setHasOptionsMenu(true);
@@ -119,7 +114,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
         });
 
         snackbar = Snackbar
-                .make(container, "Pencarian  Tidak Ditemukan", Snackbar.LENGTH_LONG);
+                .make(container, "Pencarian Tidak Ditemukan", Snackbar.LENGTH_LONG);
 
         getSektorList();
 
@@ -174,24 +169,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchView.setMenuItem(searchItem);
-
-        searchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                //method
-                return false;
-            }
-
-        });
+        inflater.inflate(R.menu.filter, menu);
 
     }
 
@@ -202,8 +180,6 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
         int id = item.getItemId();
 
         if (id == R.id.action_filter) {
-//            MoreActivityList bottomSheet = new MoreActivityList();
-//            bottomSheet.show(getActivity().getSupportFragmentManager(), "More");
 
             openDialog(R.layout.dialog_filter);
             return true;
@@ -265,7 +241,7 @@ public class Fragment_2 extends Fragment implements  AdapterSektorList.onListCli
 
                                 recyeview_sektor.setLayoutManager(new GridLayoutManager(getContext(),4));
                                 recyeview_sektor.setHasFixedSize(true);
-                                adapterSektorList = new AdapterSektorList(getContext(), mSektor, Fragment_2.this);
+                                adapterSektorList = new AdapterSektorList(getContext(), mSektor, ListFragment.this);
                                 recyeview_sektor.setAdapter(adapterSektorList);
                                 adapterSektorList.notifyDataSetChanged();
 
