@@ -85,7 +85,7 @@
             android:layout_below="@id/rl_gambar"
             android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="4dp"
@@ -191,8 +191,6 @@
                         />
 
 
-
-
                     <TextView
                         android:id="@+id/tv_pemilik"
                         android:textColor="@color/colorBlack"
@@ -204,12 +202,23 @@
                         android:layout_marginLeft="5dp"
                        />
 
+                    <EditText
+                        android:id="@+id/tv_link_pdf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_pemilik">
+                    </EditText>
+
+
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/btn_pdf"
                         app:cardCornerRadius="10dp"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:layout_marginBottom="10dp"
+                        app:cardUseCompatPadding="true"
+                        android:layout_below="@id/tv_pemilik"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/colorLightBlue">
@@ -234,6 +243,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_deskripsi"
             android:padding="5dp"
             android:layout_below="@+id/rl_info"
             android:layout_width="match_parent"
@@ -269,6 +279,66 @@
                         android:layout_below="@+id/label_desk"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_below="@+id/rl_deskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/tv_laporan_pendataan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorLightBlue"
+                        android:text="Laporan Pendataan"
+                        android:textSize="20dp"
+                        android:textStyle="bold">
+                    </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tahun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/tv_laporan_pendataan"/>
+
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_triwulan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rv_tahun"
+                        android:layout_marginTop="10dp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_bulan"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rv_triwulan"/>
+
+
 
                 </RelativeLayout>
 

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import latihan.rico.com.bpptpromosi.Fragment.ListFragment;
 import latihan.rico.com.bpptpromosi.Fragment.SearchFragment;
 import latihan.rico.com.bpptpromosi.Fragment.RealisasiFragment;
-import latihan.rico.com.bpptpromosi.Fragment.HelpFragment;
+import latihan.rico.com.bpptpromosi.FragmentHelp.HelpFragment;
 import latihan.rico.com.bpptpromosi.Fragment.HomeFragment;
 import latihan.rico.com.bpptpromosi.R;
 

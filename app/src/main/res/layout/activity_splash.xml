@@ -11,6 +11,18 @@
         android:layout_centerVertical="true"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/tv_nama_aplikasi"
+            android:text="E-INVESMENT"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:textSize="17pt"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@+id/logo"/>
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
