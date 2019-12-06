@@ -1,6 +1,8 @@
 package latihan.rico.com.bpptpromosi.Adapter;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -30,6 +32,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
+import com.ceylonlabs.imageviewpopup.ImagePopup;
 import com.jsibbold.zoomage.ZoomageView;
 
 import org.json.JSONArray;
@@ -41,6 +44,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import latihan.rico.com.bpptpromosi.Activity.ActivityDetailEvent;
+import latihan.rico.com.bpptpromosi.Activity.ActivityEventDetailImage;
 import latihan.rico.com.bpptpromosi.Model.ModelEvent;
 import latihan.rico.com.bpptpromosi.Model.ModelEventImage;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
@@ -55,8 +60,9 @@ public class AdapterImageEvent  extends RecyclerView.Adapter<AdapterImageEvent.V
     private Context mContext;
     private List<ModelEventImage> modelEventImages;
     onListClickedRowListner listner;
-    ZoomageView iv_image;
+    private ZoomageView iv_image;
     private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail.php";
+    private Dialog customDialog;
 
     public AdapterImageEvent(Context mContext, ArrayList<ModelEventImage> modelEventImages, onListClickedRowListner listner){
         this.mContext = mContext;
@@ -104,43 +110,9 @@ public class AdapterImageEvent  extends RecyclerView.Adapter<AdapterImageEvent.V
         holder.logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//
-//                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(mContext);
-//                View mView = layoutInflaterAndroid.inflate(R.layout.dialog_image_event, null);
-//                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
-//                alertDialogBuilder.setView(mView);
-//
-//                iv_image = (ZoomageView) mView.findViewById(R.id.iv_image);
-//
-//                getImageDetail(position);
-//                final AlertDialog alertDialog = alertDialogBuilder.create();
-//                final Window dialogWindow = alertDialog.getWindow();
-//                final WindowManager.LayoutParams dialogWindowAttributes = dialogWindow.getAttributes();
-//
-//
-//
-//                // Set fixed width (280dp) and WRAP_CONTENT height
-//                final WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-//                lp.copyFrom(dialogWindowAttributes);
-//                lp.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 280, mContext.getApplicationContext().getResources().getDisplayMetrics());
-//                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-//                dialogWindow.setAttributes(lp);
-//                alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-//
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                    dialogWindow.setType(WindowManager.LayoutParams.TYPE_TOAST);
-//                }
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                    dialogWindow.setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-//                }
-//                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M)
-//                {
-//                    dialogWindow.setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
-//                }
-//                alertDialog.show();
-//
-
+                Intent intent = new Intent(mContext, ActivityEventDetailImage.class);
+                intent.putExtra("id", modelEventImage.getId());
+                view.getContext().startActivity(intent);
             }
         });
     }
@@ -159,11 +131,14 @@ public class AdapterImageEvent  extends RecyclerView.Adapter<AdapterImageEvent.V
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
 
+
+
                                 ImageLoader imageLoader = MySingleton.getInstance(mContext).getImageLoader();
                                 imageLoader.get( jsonObject.getString("image"), new ImageLoader.ImageListener() {
                                     @Override
                                     public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                                        iv_image.setImageBitmap(response.getBitmap());
+
                                     }
 
                                     @Override

@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,7 +75,10 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
     ArrayList<ModelListSektorBulan> modelListSektorBulans = new ArrayList<>();
     AdapterListSektorBulan adapterListSektorBulan;
 
-    int tahun;
+
+    int tahun,temp;
+    RelativeLayout rl_pendataan;
+
 
 
     @Override
@@ -96,7 +100,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
         rv_tahun = (RecyclerView) findViewById(R.id.rv_tahun);
         rv_triwulan = (RecyclerView) findViewById(R.id.rv_triwulan);
         rv_bulan = (RecyclerView) findViewById(R.id.rv_bulan);
-
+        rl_pendataan = (RelativeLayout) findViewById(R.id.rl_pendataan);
 
         Intent intent = getIntent();
         id_sektor = intent.getIntExtra("id", 0);
@@ -164,11 +168,12 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                 new Response.Listener<String>() {
                     public void onResponse(String response){
                         Log.d("json", response.toString());
+                        temp=0;
                         try {
                             JSONArray jsonArray =  new JSONArray(response);
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
+                                temp++;
                                 modelListSektorTahuns.add(new ModelListSektorTahun(
                                         jsonObject.getInt("nama"),
                                         jsonObject.getString("nominal")));
@@ -178,6 +183,10 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                                 adapterListSektorTahun = new AdapterListSektorTahun(getApplicationContext(), modelListSektorTahuns,DetailActivity.this);
                                 rv_tahun.setAdapter(adapterListSektorTahun);
                                 adapterListSektorTahun.notifyDataSetChanged();
+                            }
+
+                            if (temp == 0){
+                                rl_pendataan.setVisibility(View.GONE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -370,6 +379,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                 new Response.Listener<String>() {
                     public void onResponse(String response){
                         Log.d("json", response.toString());
+
                         modelListSektorTriwulans.clear();
                         try {
                             JSONArray jsonArray =  new JSONArray(response);

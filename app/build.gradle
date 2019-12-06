@@ -45,6 +45,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:15.0.1'
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
     implementation 'com.jsibbold:zoomage:1.3.0'
-    //Library Expand Searchview
+    implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
+
 
 }
