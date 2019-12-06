@@ -164,6 +164,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
@@ -203,6 +204,51 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txt_highliht3"
+                    android:nestedScrollingEnabled="false"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:padding="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/rl_3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_highliht4"
+                    android:layout_alignParentLeft="true"
+                    android:padding="10dp"
+                    android:textColor="@color/colorBlack"
+                    android:textStyle="bold"
+                    android:text="@string/event"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_more_vert_black_24dp"
+                    android:layout_alignParentRight="true"
+                    android:padding="10dp"/>
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:id="@+id/txt_highliht4"-->
+                <!--                    android:layout_alignParentRight="true"-->
+                <!--                    android:layout_marginTop="10dp"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    android:textColor="@color/colorLightBlue"-->
+                <!--                    android:text="@string/lihat_semua"/>-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_highliht4"
                     android:nestedScrollingEnabled="false"
                     />
 

@@ -34,9 +34,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import latihan.rico.com.bpptpromosi.Activity.MoreActivity;
+import latihan.rico.com.bpptpromosi.Adapter.AdapterEvent;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterProspectHome;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorHome;
+import latihan.rico.com.bpptpromosi.Model.ModelEvent;
 import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
@@ -50,18 +52,22 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
     Toolbar toolbar_bppt;
     RecyclerView recyclerView1;
     RecyclerView recyclerView2;
+    RecyclerView recyclerView3;
     CollapsingToolbarLayout collapsingToolbarLayout;
     NestedScrollView scroll;
     RecyclerView rv_sektor;
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
     ArrayList<ModelListSektor> modelListSektors = new ArrayList<>();
     ArrayList<ModelProspect> modelProspects = new ArrayList<>();
+    ArrayList<ModelEvent> modelEvents = new ArrayList<>();
     AdapterSektor adapterSektor;
     private static final String URL_SEKTOR = Server.URL_API + "ApiSektor.php";
     private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektor.php";
+    private static final String URL_EVENT = Server.URL_API + "ApiEventList.php";
 
     AdapterProspectHome adapterProspectHome;
     AdapterSektorHome adapterSektorHome;
+    AdapterEvent adapterEvent;
 
 
     TextView txt_more;
@@ -77,6 +83,7 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
 
         recyclerView1 = view.findViewById(R.id.recycler_view);
         recyclerView2 = view.findViewById(R.id.recycler_view2);
+        recyclerView3 = view.findViewById(R.id.recycler_view3);
         rv_sektor = view.findViewById(R.id.recyeview_sektor);
         toolbar_bppt = view.findViewById(R.id.toolbar_bppt);
 
@@ -94,7 +101,7 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
         getsektor();
         getProspectHome();
         getSektorHome();
-
+        getEvent();
 
 
 
@@ -233,6 +240,42 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
                                 adapterSektorHome = new AdapterSektorHome(getContext(), modelListSektors);
                                 recyclerView2.setAdapter(adapterSektorHome);
                                 adapterSektorHome.notifyDataSetChanged();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+    }
+
+    private void getEvent() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_EVENT,
+                new Response.Listener<String>() {
+                    public void onResponse(String response){
+                        Log.d("json", response.toString());
+                        modelEvents.clear();
+                        try {
+                            JSONArray jsonArray =  new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                modelEvents.add(new ModelEvent(
+                                        jsonObject.getInt("id"),
+                                        jsonObject.getString("judul_event"),
+                                        jsonObject.getString("deskripsifix"),
+                                        jsonObject.getString("video")));
+
+                                recyclerView3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+                                recyclerView3.setHasFixedSize(true);
+                                adapterEvent = new AdapterEvent(getContext(), modelEvents);
+                                recyclerView3.setAdapter(adapterEvent);
+                                adapterEvent.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

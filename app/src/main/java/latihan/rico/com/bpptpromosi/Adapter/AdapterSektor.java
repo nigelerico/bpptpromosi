@@ -84,7 +84,9 @@ public class AdapterSektor  extends RecyclerView.Adapter<AdapterSektor.ViewHolde
 
     }
 
-
+    public void selectApi(){
+        
+    }
 
     @Override
     public int getItemCount() {

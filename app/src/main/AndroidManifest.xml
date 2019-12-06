@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="latihan.rico.com.bpptpromosi">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo_kab_tulungagung"
@@ -10,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.RealisasiSektorActivity"></activity>
+        <activity android:name=".Activity.ActivityDetailEvent"></activity>
+        <activity android:name=".Activity.RealisasiSektorActivity" />
         <activity android:name=".Activity.tes" />
         <activity android:name=".Activity.RealisasiBulanActivity" />
         <activity android:name=".Activity.ActivityRealisasiBulan" />
@@ -37,8 +41,5 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
