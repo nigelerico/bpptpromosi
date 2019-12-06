@@ -84,9 +84,36 @@
 
     </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_margin="10dp"
+                android:id="@+id/list_gambar"
+                android:layout_below="@id/rl_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/label_image"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBlack"
+                    android:text="Images"
+                    android:textSize="10pt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_image"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/label_image"
+                    android:layout_width="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_height="wrap_content"/>
+            </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/rl_judul"
-        android:layout_below="@id/rl_video"
+        android:layout_below="@id/list_gambar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

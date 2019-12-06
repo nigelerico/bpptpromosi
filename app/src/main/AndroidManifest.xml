@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNAL_SYSTEM_WINDOW "/>
 
     <application
         android:allowBackup="true"
@@ -13,11 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.ActivityDetailEvent"></activity>
+        <activity
+            android:name=".Activity.ActivityDetailEvent"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.RealisasiSektorActivity" />
-        <activity android:name=".Activity.tes" />
         <activity android:name=".Activity.RealisasiBulanActivity" />
-        <activity android:name=".Activity.ActivityRealisasiBulan" />
         <activity
             android:name=".Activity.FilterSektorActivity"
             android:screenOrientation="portrait" />

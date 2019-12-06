@@ -115,6 +115,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> 
                 intent.putExtra("video", modelEvent.getVideo());
                 intent.putExtra("judul_event", modelEvent.getJudul_event());
                 intent.putExtra("deskripsi", modelEvent.getDeskripsi());
+                intent.putExtra("id", modelEvent.getId());
                 mContext.startActivity(intent);
             }
         });
