@@ -2,6 +2,7 @@ package latihan.rico.com.bpptpromosi.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,58 +59,20 @@ public class AdapterProspectHome extends RecyclerView.Adapter<AdapterProspectHom
     public void onBindViewHolder(final AdapterProspectHome.ViewHolder holder, final int position) {
         final ModelProspect modelProspect = prospects.get(position);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_FOTOLISTSEKTOR,
-                new Response.Listener<String>() {
-                    public void onResponse(String response){
-                        Log.d("json", response.toString());
+        ImageLoader imageLoader = MySingleton.getInstance(mContext).getImageLoader();
+        imageLoader.get(prospects.get(position).getImage(), new ImageLoader.ImageListener() {
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                holder.iv_gambar.setImageBitmap(response.getBitmap());
+            }
 
-
-                        try {
-                            JSONArray jsonArray =  new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-
-                                ImageLoader imageLoader = MySingleton.getInstance(mContext).getImageLoader();
-                                imageLoader.get( jsonObject.getString("directory"), new ImageLoader.ImageListener() {
-                                    @Override
-                                    public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                                        holder.iv_gambar.setImageBitmap(response.getBitmap());
-                                    }
-
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        error.printStackTrace();
-                                    }
-                                });
-
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(modelProspect.getId()));
-                return params;
-            }
-        };
+        });
 
-        MySingleton.getInstance(mContext).addToRequestQueue(stringRequest);
-
-
-        holder.tv_nama_sektor.setText(modelProspect.getNama_sektor());
+        holder.tv_nama_sektor.setText(Html.fromHtml(modelProspect.getNama_sektor()));
         holder.tv_sektor.setText(modelProspect.getMaster_sektor());
         holder.tv_bidang.setText(modelProspect.getValue());
 

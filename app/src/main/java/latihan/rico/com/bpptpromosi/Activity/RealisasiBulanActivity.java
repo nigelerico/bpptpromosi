@@ -86,7 +86,7 @@ public class RealisasiBulanActivity extends AppCompatActivity {
                                         jsonObject.getInt("id"),
                                         jsonObject.getInt("id_tahun"),
                                         jsonObject.getString("bulan"),
-                                        jsonObject.getString("value"),
+                                        jsonObject.getDouble("value"),
                                         jsonObject.getString("bulanfix")));
 
                                 rv_realisasi_bulan.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));

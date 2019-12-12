@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.recyclerview.widget.RecyclerView;
 import latihan.rico.com.bpptpromosi.ModelLaporanSektor.ModelListSektorBulan;
@@ -18,11 +20,14 @@ public class AdapterListSektorBulan extends RecyclerView.Adapter<AdapterListSekt
 
     private Context mContext;
     private List<ModelListSektorBulan> sektorBulans;
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
 
     public AdapterListSektorBulan(Context mContext, ArrayList<ModelListSektorBulan> ModelListSektorBulan){
         this.mContext = mContext;
         this.sektorBulans = ModelListSektorBulan;
+
 
     }
 
@@ -42,7 +47,7 @@ public class AdapterListSektorBulan extends RecyclerView.Adapter<AdapterListSekt
 
 
         holder.tv_bulan.setText(modelListSektorBulan.getBulan());
-        holder.tv_nominal.setText("Rp."+(modelListSektorBulan.getNominal()));
+        holder.tv_nominal.setText(formatRupiah.format((double)modelListSektorBulan.getNominal()));
 
 
     }

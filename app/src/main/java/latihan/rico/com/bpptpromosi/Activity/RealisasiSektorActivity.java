@@ -79,6 +79,7 @@ public class RealisasiSektorActivity extends AppCompatActivity {
 
         tv_bulan.setText("Data Realisasi "+bulan);
 
+
         getRealisasiSektor();
         getPDF();
 
@@ -86,7 +87,7 @@ public class RealisasiSektorActivity extends AppCompatActivity {
         btn_pdf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(et_link.getText().toString().equals("")){
+                if(et_link.getText().toString().equals("https://dpmptsp.tulungagung.go.id/promosi/")){
                     Toast.makeText(getApplicationContext(),"Data PDF TIDAK ADA", Toast.LENGTH_SHORT).show();
                 }
                 else { if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -118,6 +119,8 @@ public class RealisasiSektorActivity extends AppCompatActivity {
 
                                 link_download = jsonObject.getString("directory");
                                 et_link.setText(link_download);
+
+                               // Toast.makeText(getApplicationContext(),link_download, Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -160,7 +163,7 @@ public class RealisasiSektorActivity extends AppCompatActivity {
                                         jsonObject.getInt("id_bulan"),
                                         jsonObject.getInt("id_sektor"),
                                         jsonObject.getString("unit_usaha"),
-                                        jsonObject.getString("investasi"),
+                                        jsonObject.getDouble("investasi"),
                                         jsonObject.getString("tk"),
                                         jsonObject.getString("nama_sektor"),
                                         jsonObject.getString("directory")));

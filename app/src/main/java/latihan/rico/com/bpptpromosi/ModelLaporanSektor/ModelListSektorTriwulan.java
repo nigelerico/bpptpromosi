@@ -2,9 +2,9 @@ package latihan.rico.com.bpptpromosi.ModelLaporanSektor;
 
 public class ModelListSektorTriwulan {
     String triwulan;
-    String nominaltriwulan;
+    Double nominaltriwulan;
 
-    public ModelListSektorTriwulan(String triwulan, String nominaltriwulan) {
+    public ModelListSektorTriwulan(String triwulan, Double nominaltriwulan) {
         this.triwulan = triwulan;
         this.nominaltriwulan = nominaltriwulan;
     }
@@ -17,11 +17,11 @@ public class ModelListSektorTriwulan {
         this.triwulan = triwulan;
     }
 
-    public String getNominaltriwulan() {
+    public Double getNominaltriwulan() {
         return nominaltriwulan;
     }
 
-    public void setNominaltriwulan(String nominaltriwulan) {
+    public void setNominaltriwulan(Double nominaltriwulan) {
         this.nominaltriwulan = nominaltriwulan;
     }
 }

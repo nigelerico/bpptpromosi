@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import latihan.rico.com.bpptpromosi.Adapter.AdapterImageEvent;
+import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorImage;
 import latihan.rico.com.bpptpromosi.AdapterLaporanSektor.AdapterListSektorBulan;
 import latihan.rico.com.bpptpromosi.AdapterLaporanSektor.AdapterListSektorTahun;
 import latihan.rico.com.bpptpromosi.AdapterLaporanSektor.AdapterListSektorTriwulan;
+import latihan.rico.com.bpptpromosi.Model.ModelEventImage;
+import latihan.rico.com.bpptpromosi.Model.ModelSektorImage;
 import latihan.rico.com.bpptpromosi.ModelLaporanSektor.ModelListSektorBulan;
 import latihan.rico.com.bpptpromosi.ModelLaporanSektor.ModelListSektorTahun;
 import latihan.rico.com.bpptpromosi.ModelLaporanSektor.ModelListSektorTriwulan;
@@ -61,7 +65,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
     EditText tv_link_pdf;
     CardView btn_pdf;
     String link_download;
-    RecyclerView rv_tahun,rv_triwulan,rv_bulan;
+    RecyclerView rv_tahun,rv_triwulan,rv_bulan,rv_image_sektor;
 
     private static final String URL_LAPORAN_TAHUN = Server.URL_API + "ApiListSektorTahun.php";
     ArrayList<ModelListSektorTahun> modelListSektorTahuns = new ArrayList<>();
@@ -74,6 +78,9 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
     private static final String URL_LAPORAN_BULAN = Server.URL_API + "ApiListSektorBulan.php";
     ArrayList<ModelListSektorBulan> modelListSektorBulans = new ArrayList<>();
     AdapterListSektorBulan adapterListSektorBulan;
+
+    ArrayList<ModelSektorImage> modelSektorImages = new ArrayList<>();
+    AdapterSektorImage adapterSektorImage;
 
 
     int tahun,temp;
@@ -100,6 +107,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
         rv_tahun = (RecyclerView) findViewById(R.id.rv_tahun);
         rv_triwulan = (RecyclerView) findViewById(R.id.rv_triwulan);
         rv_bulan = (RecyclerView) findViewById(R.id.rv_bulan);
+        rv_image_sektor = (RecyclerView) findViewById(R.id.rv_image_sektor);
         rl_pendataan = (RelativeLayout) findViewById(R.id.rl_pendataan);
 
         Intent intent = getIntent();
@@ -115,7 +123,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
 
         ambildata();
 
-        tv_namasektor.setText("Nama Sektor : " + nama_sektor);
+        tv_namasektor.setText("Nama Sektor : " + Html.fromHtml(nama_sektor));
         tv_sektor.setText("Sektor : " + sekor);
         tv_bidang.setText("Bidang : " + bidang);
         tv_alamat.setText(alamat);
@@ -176,7 +184,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                                 temp++;
                                 modelListSektorTahuns.add(new ModelListSektorTahun(
                                         jsonObject.getInt("nama"),
-                                        jsonObject.getString("nominal")));
+                                        jsonObject.getDouble("nominal")));
 
                                 rv_tahun.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                 rv_tahun.setHasFixedSize(true);
@@ -286,33 +294,41 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
 
 
     private void  gambarSektor() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_FOTOLISTSEKTOR , new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                String json = response.toString();
-                try {
-                    JSONArray jsonArray = new JSONArray(json);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                        showImage( jsonObject.getString("directory"));
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_FOTOLISTSEKTOR,
+                new Response.Listener<String>() {
+                    public void onResponse(String response){
+                        Log.d("json", response.toString());
 
 
+                        try {
+                            JSONArray jsonArray =  new JSONArray(response);
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+
+                                modelSektorImages.add(new ModelSektorImage(
+                                        jsonObject.getInt("id"),
+                                        jsonObject.getString("directory")));
+
+                                rv_image_sektor.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,false));
+                                rv_image_sektor.setHasFixedSize(true);
+                                adapterSektorImage = new AdapterSektorImage(getApplicationContext(), modelSektorImages);
+                                rv_image_sektor.setAdapter(adapterSektorImage);
+                                adapterSektorImage.notifyDataSetChanged();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
+
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
-                Toast.makeText(getApplicationContext(),"No Internet Connection",Toast.LENGTH_LONG ).show();
             }
         }){
-
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
@@ -320,7 +336,6 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                 return params;
             }
         };
-
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
@@ -388,7 +403,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
 
                                 modelListSektorTriwulans.add(new ModelListSektorTriwulan(
                                         jsonObject.getString("nama"),
-                                        jsonObject.getString("nominal")));
+                                        jsonObject.getDouble("nominal")));
 
                                 rv_triwulan.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                 rv_triwulan.setHasFixedSize(true);
@@ -431,7 +446,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
 
                                 modelListSektorBulans.add(new ModelListSektorBulan(
                                         jsonObject.getString("nama"),
-                                        jsonObject.getString("nominal")));
+                                        jsonObject.getDouble("nominal")));
 
                                 rv_bulan.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                                 rv_bulan.setHasFixedSize(true);

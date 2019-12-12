@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,8 @@ public class AdapterRealisasiBulan  extends RecyclerView.Adapter<AdapterRealisas
 
     private Context mContext;
     private List<ModelRealisasiBulan> modelRealisasiBulans;
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
 
     public AdapterRealisasiBulan(Context mContext, ArrayList<ModelRealisasiBulan> ModelRealisasiBulan){
@@ -51,7 +55,7 @@ public class AdapterRealisasiBulan  extends RecyclerView.Adapter<AdapterRealisas
 
 
         holder.tv_bulan.setText(modelRealisasiBulan.getBulanfix());
-        holder.tv_value.setText("Rp."+modelRealisasiBulan.getValue());
+        holder.tv_value.setText(formatRupiah.format((double)modelRealisasiBulan.getValue()));
 
 
         holder.cv_bulan.setOnClickListener(new View.OnClickListener() {

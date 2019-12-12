@@ -5,16 +5,17 @@ public class ModelRealisasiBulan {
     int id;
     int id_tahun;
     String bulan;
-    String value;
+    Double value;
     String bulanfix;
 
-    public ModelRealisasiBulan(int id, int id_tahun, String bulan, String value, String bulanfix) {
+    public ModelRealisasiBulan(int id, int id_tahun, String bulan, Double value, String bulanfix) {
         this.id = id;
         this.id_tahun = id_tahun;
         this.bulan = bulan;
         this.value = value;
         this.bulanfix = bulanfix;
     }
+
 
     public int getId() {
         return id;
@@ -40,11 +41,11 @@ public class ModelRealisasiBulan {
         this.bulan = bulan;
     }
 
-    public String getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

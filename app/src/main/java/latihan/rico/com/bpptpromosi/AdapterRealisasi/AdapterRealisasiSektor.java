@@ -10,8 +10,10 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,11 +26,14 @@ public class AdapterRealisasiSektor  extends RecyclerView.Adapter<AdapterRealisa
 
     private Context mContext;
     private List<ModelRealisasiSektor> modelRealisasiSektors;
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
 
     public AdapterRealisasiSektor(Context mContext, ArrayList<ModelRealisasiSektor> ModelRealisasiSektor){
         this.mContext = mContext;
         this.modelRealisasiSektors = ModelRealisasiSektor;
+
 
 
     }
@@ -67,7 +72,7 @@ public class AdapterRealisasiSektor  extends RecyclerView.Adapter<AdapterRealisa
 
         holder.tv_nama_sektor.setText(modelRealisasiSektor.getNama_sektor());
         holder.tv_unit_usaha.setText(modelRealisasiSektor.getUnitusaha());
-        holder.tv_investasi.setText("Rp."+modelRealisasiSektor.getInvestasi());
+        holder.tv_investasi.setText(formatRupiah.format((double)modelRealisasiSektor.getInvestasi()));
         holder.tv_tenaga_kerja.setText(modelRealisasiSektor.getTenaga_kerja());
 
 

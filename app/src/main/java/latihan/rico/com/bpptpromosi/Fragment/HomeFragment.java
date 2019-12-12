@@ -186,7 +186,8 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
                                             jsonObject.getString("statusVerifikasi"),
                                             jsonObject.getString("nama_idsektor"),
                                             jsonObject.getString("nama_idsubsektor"),
-                                            jsonObject.getString("directory")));
+                                            jsonObject.getString("directory"),
+                                            jsonObject.getString("image")));
                                 }
 
 
@@ -232,7 +233,8 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
                                             jsonObject.getString("statusVerifikasi"),
                                             jsonObject.getString("nama_idsektor"),
                                             jsonObject.getString("nama_idsubsektor"),
-                                            jsonObject.getString("directory")));
+                                            jsonObject.getString("directory"),
+                                            jsonObject.getString("image")));
 
 
                                 recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));

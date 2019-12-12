@@ -14,8 +14,9 @@ public class ModelListSektor {
     public String master_sektor;
     public String value;
     public String logo;
+    public String gambar;
 
-    public ModelListSektor(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String master_sektor, String value, String logo) {
+    public ModelListSektor(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String master_sektor, String value, String logo, String gambar) {
         this.id = id;
         this.id_sektor = id_sektor;
         this.id_subsektor = id_subsektor;
@@ -28,6 +29,7 @@ public class ModelListSektor {
         this.master_sektor = master_sektor;
         this.value = value;
         this.logo = logo;
+        this.gambar = gambar;
     }
 
     public int getId() {
@@ -124,5 +126,13 @@ public class ModelListSektor {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
     }
 }

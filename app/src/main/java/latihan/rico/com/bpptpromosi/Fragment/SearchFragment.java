@@ -112,7 +112,8 @@ public class SearchFragment extends Fragment {
                                         jsonObject.getString("statusVerifikasi"),
                                         jsonObject.getString("nama_idsektor"),
                                         jsonObject.getString("nama_idsubsektor"),
-                                        jsonObject.getString("directory")));
+                                        jsonObject.getString("directory"),
+                                        jsonObject.getString("image")));
 
                                 rv_sektor.setLayoutManager(new LinearLayoutManager(getContext()));
                                 rv_sektor.setHasFixedSize(true);

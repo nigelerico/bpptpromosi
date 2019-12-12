@@ -5,12 +5,12 @@ public class ModelRealisasiSektor {
     int id_bulan;
     int id_sektor;
     String unitusaha;
-    String investasi;
+    Double investasi;
     String tenaga_kerja;
     String nama_sektor;
     String logo;
 
-    public ModelRealisasiSektor(int id, int id_bulan, int id_sektor, String unitusaha, String investasi, String tenaga_kerja, String nama_sektor, String logo) {
+    public ModelRealisasiSektor(int id, int id_bulan, int id_sektor, String unitusaha, Double investasi, String tenaga_kerja, String nama_sektor, String logo) {
         this.id = id;
         this.id_bulan = id_bulan;
         this.id_sektor = id_sektor;
@@ -53,11 +53,11 @@ public class ModelRealisasiSektor {
         this.unitusaha = unitusaha;
     }
 
-    public String getInvestasi() {
+    public Double getInvestasi() {
         return investasi;
     }
 
-    public void setInvestasi(String investasi) {
+    public void setInvestasi(Double investasi) {
         this.investasi = investasi;
     }
 

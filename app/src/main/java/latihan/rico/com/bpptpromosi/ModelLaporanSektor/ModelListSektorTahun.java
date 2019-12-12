@@ -2,9 +2,9 @@ package latihan.rico.com.bpptpromosi.ModelLaporanSektor;
 
 public class ModelListSektorTahun {
     int tahun;
-    String nominal;
+    Double nominal;
 
-    public ModelListSektorTahun(int tahun, String nominal) {
+    public ModelListSektorTahun(int tahun, Double nominal) {
         this.tahun = tahun;
         this.nominal = nominal;
     }
@@ -17,11 +17,11 @@ public class ModelListSektorTahun {
         this.tahun = tahun;
     }
 
-    public String getNominal() {
+    public Double getNominal() {
         return nominal;
     }
 
-    public void setNominal(String nominal) {
+    public void setNominal(Double nominal) {
         this.nominal = nominal;
     }
 }

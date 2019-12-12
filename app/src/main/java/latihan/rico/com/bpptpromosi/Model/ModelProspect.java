@@ -14,9 +14,9 @@ public class ModelProspect {
     public String master_sektor;
     public String value;
     public String logo;
+    public String image;
 
-
-    public ModelProspect(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String master_sektor, String value, String logo) {
+    public ModelProspect(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String master_sektor, String value, String logo, String image) {
         this.id = id;
         this.id_sektor = id_sektor;
         this.id_subsektor = id_subsektor;
@@ -29,7 +29,9 @@ public class ModelProspect {
         this.master_sektor = master_sektor;
         this.value = value;
         this.logo = logo;
+        this.image = image;
     }
+
 
     public int getId() {
         return id;
@@ -125,5 +127,13 @@ public class ModelProspect {
 
     public void setLogo(String logo) {
         this.logo = logo;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

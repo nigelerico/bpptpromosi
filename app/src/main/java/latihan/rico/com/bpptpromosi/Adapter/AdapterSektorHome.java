@@ -2,6 +2,7 @@ package latihan.rico.com.bpptpromosi.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class AdapterSektorHome extends RecyclerView.Adapter<AdapterSektorHome.Vi
 
     private Context mContext;
     private List<ModelListSektor> sektorsHome;
-    private static final String URL_FOTOLISTSEKTOR =  Server.URL_API + "ApiListSektorImage.php";
+
 
     public AdapterSektorHome(Context mContext, ArrayList<ModelListSektor> ModelListSektor){
         this.mContext = mContext;
@@ -59,58 +60,22 @@ public class AdapterSektorHome extends RecyclerView.Adapter<AdapterSektorHome.Vi
     public void onBindViewHolder(final AdapterSektorHome.ViewHolder holder, final int position) {
         final ModelListSektor modelListSektor = sektorsHome.get(position);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_FOTOLISTSEKTOR,
-                new Response.Listener<String>() {
-                    public void onResponse(String response){
-                        Log.d("json", response.toString());
 
+        ImageLoader imageLoader2 = MySingleton.getInstance(mContext).getImageLoader();
+        imageLoader2.get(sektorsHome.get(position).getGambar(), new ImageLoader.ImageListener() {
+            @Override
+            public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
+                holder.iv_gambar.setImageBitmap(response.getBitmap());
+            }
 
-                        try {
-                            JSONArray jsonArray =  new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-
-                                ImageLoader imageLoader = MySingleton.getInstance(mContext).getImageLoader();
-                                imageLoader.get( jsonObject.getString("directory"), new ImageLoader.ImageListener() {
-                                    @Override
-                                    public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
-                                        holder.iv_gambar.setImageBitmap(response.getBitmap());
-                                    }
-
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        error.printStackTrace();
-                                    }
-                                });
-
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(modelListSektor.getId()));
-                return params;
-            }
-        };
-
-        MySingleton.getInstance(mContext).addToRequestQueue(stringRequest);
+        });
 
 
-        holder.tv_nama_sektor.setText(modelListSektor.getNama_sektor());
+        holder.tv_nama_sektor.setText(Html.fromHtml(modelListSektor.getNama_sektor()));
         holder.tv_sektor.setText(modelListSektor.getMaster_sektor());
         holder.tv_bidang.setText(modelListSektor.getValue());
         holder.cv_sektor.setOnClickListener(new View.OnClickListener() {

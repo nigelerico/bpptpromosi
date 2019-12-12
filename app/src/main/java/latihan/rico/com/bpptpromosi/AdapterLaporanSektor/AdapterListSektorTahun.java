@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.recyclerview.widget.RecyclerView;
 import latihan.rico.com.bpptpromosi.ModelLaporanSektor.ModelListSektorTahun;
@@ -20,6 +22,8 @@ public class AdapterListSektorTahun  extends RecyclerView.Adapter<AdapterListSek
     private Context mContext;
     private List<ModelListSektorTahun> sektorstahun;
     onListClickedRowListner listner;
+    Locale localeID = new Locale("in", "ID");
+    NumberFormat formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 
     public AdapterListSektorTahun(Context mContext, ArrayList<ModelListSektorTahun> ModelListSektorTahun,onListClickedRowListner listner){
         this.mContext = mContext;
@@ -48,7 +52,7 @@ public class AdapterListSektorTahun  extends RecyclerView.Adapter<AdapterListSek
 
 
         holder.tv_tahun.setText("Tahun "+(modelListSektorTahun.getTahun()));
-        holder.tv_nominal.setText("Rp."+(modelListSektorTahun.getNominal()));
+        holder.tv_nominal.setText(formatRupiah.format((double)modelListSektorTahun.getNominal()));
 
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {

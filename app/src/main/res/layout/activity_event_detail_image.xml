@@ -39,7 +39,7 @@
                     android:id="@+id/tv_nama_hotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gambar"
+                    android:text="Gambar Event"
                     android:textSize="8pt"
                     android:textColor="@color/colorWhite"
                     android:textStyle="bold"/>

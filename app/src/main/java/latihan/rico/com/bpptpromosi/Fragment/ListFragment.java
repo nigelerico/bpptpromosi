@@ -146,7 +146,8 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                                         jsonObject.getString("statusVerifikasi"),
                                         jsonObject.getString("nama_idsektor"),
                                         jsonObject.getString("nama_idsubsektor"),
-                                        jsonObject.getString("directory")));
+                                        jsonObject.getString("directory"),
+                                        jsonObject.getString("image")));
 
                                 rv_sektor.setLayoutManager(new LinearLayoutManager(getContext()));
                                 rv_sektor.setHasFixedSize(true);
@@ -292,7 +293,8 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                                         jsonObject.getString("statusVerifikasi"),
                                         jsonObject.getString("nama_idsektor"),
                                         jsonObject.getString("nama_idsubsektor"),
-                                        jsonObject.getString("directory")));
+                                        jsonObject.getString("directory"),
+                                        jsonObject.getString("image")));
 
                                 rv_sektor.setLayoutManager(new LinearLayoutManager(getContext()));
                                 rv_sektor.setHasFixedSize(true);
