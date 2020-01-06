@@ -10,13 +10,16 @@ public class ModelProspect {
     public String telepon_sektor;
     public String nama_pengelola;
     public String deskripsi;
+    public String lokasi;
+    public String latitude;
+    public String longitude;
     public String statusVerifikasi;
     public String master_sektor;
     public String value;
     public String logo;
     public String image;
 
-    public ModelProspect(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String statusVerifikasi, String master_sektor, String value, String logo, String image) {
+    public ModelProspect(int id, int id_sektor, int id_subsektor, String nama_sektor, String alamat_sektor, String telepon_sektor, String nama_pengelola, String deskripsi, String lokasi, String latitude, String longitude, String statusVerifikasi, String master_sektor, String value, String logo, String image) {
         this.id = id;
         this.id_sektor = id_sektor;
         this.id_subsektor = id_subsektor;
@@ -25,13 +28,15 @@ public class ModelProspect {
         this.telepon_sektor = telepon_sektor;
         this.nama_pengelola = nama_pengelola;
         this.deskripsi = deskripsi;
+        this.lokasi = lokasi;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.statusVerifikasi = statusVerifikasi;
         this.master_sektor = master_sektor;
         this.value = value;
         this.logo = logo;
         this.image = image;
     }
-
 
     public int getId() {
         return id;
@@ -95,6 +100,30 @@ public class ModelProspect {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public String getLokasi() {
+        return lokasi;
+    }
+
+    public void setLokasi(String lokasi) {
+        this.lokasi = lokasi;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 
     public String getStatusVerifikasi() {

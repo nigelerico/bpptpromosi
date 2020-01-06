@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/tv_nama_aplikasi"
-            android:text="E-INVESMENT"
+            android:text="SIINTA"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
             android:textSize="17pt"
@@ -31,10 +31,10 @@
 
         <TextView
             android:id="@+id/tv"
-            android:text="DPMPTSP"
+            android:text="Sistem Informasi Investasi Tulungagung"
             android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:textSize="17pt"
+            android:textSize="12pt"
             android:textColor="@color/colorBlack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

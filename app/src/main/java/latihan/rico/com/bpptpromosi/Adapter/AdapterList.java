@@ -111,6 +111,9 @@ public class AdapterList  extends RecyclerView.Adapter<AdapterList.ViewHolder>{
                 intent.putExtra("deskripsi", modelListSektor.getDeskripsi());
                 intent.putExtra("logo", modelListSektor.getLogo());
                 intent.putExtra("status", modelListSektor.getStatusVerifikasi());
+                intent.putExtra("lokasi", modelListSektor.getLokasi());
+                intent.putExtra("latitude", modelListSektor.getLatitude());
+                intent.putExtra("longitude", modelListSektor.getLongitude());
                 view.getContext().startActivity(intent);
             }
         });

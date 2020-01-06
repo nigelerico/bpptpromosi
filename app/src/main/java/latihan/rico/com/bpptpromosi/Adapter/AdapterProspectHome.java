@@ -91,6 +91,9 @@ public class AdapterProspectHome extends RecyclerView.Adapter<AdapterProspectHom
                 intent.putExtra("deskripsi", modelProspect.getDeskripsi());
                 intent.putExtra("logo", modelProspect.getLogo());
                 intent.putExtra("status", modelProspect.getStatusVerifikasi());
+                intent.putExtra("lokasi", modelProspect.getLokasi());
+                intent.putExtra("latitude", modelProspect.getLatitude());
+                intent.putExtra("longitude", modelProspect.getLongitude());
                 view.getContext().startActivity(intent);
             }
         });

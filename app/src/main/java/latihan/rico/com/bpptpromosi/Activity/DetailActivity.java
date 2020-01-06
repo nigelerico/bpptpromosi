@@ -63,9 +63,10 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
     private static final String URL_PDF = "https://dpmptsp.tulungagung.go.id/api/android/ApiListSektorPdf.php";
     int id_sektor;
     EditText tv_link_pdf;
-    CardView btn_pdf;
-    String link_download;
+    CardView btn_pdf,btn_location;
+    String link_download,lokasi;
     RecyclerView rv_tahun,rv_triwulan,rv_bulan,rv_image_sektor;
+
 
     private static final String URL_LAPORAN_TAHUN = Server.URL_API + "ApiListSektorTahun.php";
     ArrayList<ModelListSektorTahun> modelListSektorTahuns = new ArrayList<>();
@@ -94,6 +95,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
         setContentView(R.layout.activity_detail);
 
         btn_pdf = (CardView) findViewById(R.id.btn_pdf);
+        btn_location = (CardView) findViewById(R.id.btn_location);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
         iv_centang = (ImageView) findViewById(R.id.iv_centang);
         tv_namasektor = (TextView) findViewById(R.id.tv_nama_sektor);
@@ -120,6 +122,7 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
         deskripsi = intent.getStringExtra("deskripsi");
         logo = intent.getStringExtra("logo");
         status = intent.getStringExtra("status");
+        lokasi = intent.getStringExtra("lokasi");
 
         ambildata();
 
@@ -143,6 +146,22 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
         if (status.equals("Belum Terverifikasi")) {
             iv_centang.setVisibility(View.GONE);
         }
+
+
+
+
+        btn_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lokasi.equals("")){
+                    Toast.makeText(getApplicationContext(),"Lokasi Belum Terdaftar", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(DetailActivity.this, MapsDirection.class);
+                    intent.putExtra("lokasi", lokasi);
+                    startActivity(intent);
+                }
+            }
+        });
 
         btn_pdf.setOnClickListener(new View.OnClickListener() {
             @Override
