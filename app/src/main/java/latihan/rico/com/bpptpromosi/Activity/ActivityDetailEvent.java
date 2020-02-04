@@ -28,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +63,7 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
     AdapterImageEvent adapterImageEvent;
     private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImage.php";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,7 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
         tv_desk = (TextView) findViewById(R.id.tv_desk);
         tv_judul = (TextView) findViewById(R.id.tv_judul);
         rv_image = (RecyclerView) findViewById(R.id.rv_image);
+
 
 
         tv_desk.setText(Html.fromHtml(deskripsi));

@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_sektor"
         app:cardCornerRadius="4dp"
@@ -26,7 +28,6 @@
 
                 <ImageView
                     android:id="@+id/iv_gambar"
-
                     android:scaleType="fitXY"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"/>

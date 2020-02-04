@@ -27,6 +27,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +40,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
@@ -73,10 +76,11 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
     private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull.php";
 
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
-    SwipeRefreshLayout swipe;
+        SwipeRefreshLayout swipe;
     int id, temp;
     Boolean status = true;
     Snackbar snackbar;
+    private ShimmerFrameLayout mShimmerViewContainer;
 
   
 
@@ -95,6 +99,9 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
         searchView = (MaterialSearchView) view.findViewById(R.id.search_view);
         rv_sektor = (RecyclerView) view.findViewById(R.id.recycler_view_list);
         swipe = (SwipeRefreshLayout) view.findViewById(R.id.swipe);
+        mShimmerViewContainer = view.findViewById(R.id.shimmer_view_container);
+
+
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -103,9 +110,9 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                     @Override
                     public void run() {
                         swipe.setRefreshing(false);
-                        if (status==true){
+                        if (status){
                             getSektorList();
-                        } else if (status==false) {
+                        } else {
                             selectAPI(id-1);
                         }
                     }
@@ -157,6 +164,9 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                                 adapterList = new AdapterList(getContext(), modelListSektors);
                                 rv_sektor.setAdapter(adapterList);
                                 adapterList.notifyDataSetChanged();
+
+                                mShimmerViewContainer.stopShimmer();
+                                mShimmerViewContainer.setVisibility(View.GONE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -170,6 +180,7 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
         });
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -308,12 +319,15 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                                 rv_sektor.setAdapter(adapterList);
                                 adapterList.notifyDataSetChanged();
 
+
+
                             }
                             if (temp == 0){
                                 snackbar.show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            snackbar.show();
                         }
 
                     }
@@ -321,6 +335,7 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
+                snackbar.show();
             }
         }) {
             @Override
@@ -334,5 +349,19 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
         alertDialog.dismiss();
     }
+
+
+    @Override
+    public void onResume() {
+        mShimmerViewContainer.startShimmer();
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        mShimmerViewContainer.stopShimmer();
+        super.onPause();
+    }
+
 
 }
