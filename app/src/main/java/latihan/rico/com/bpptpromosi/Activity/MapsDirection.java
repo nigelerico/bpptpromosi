@@ -178,7 +178,7 @@ public class MapsDirection extends FragmentActivity implements OnMapReadyCallbac
         StringBuilder googleDirectionsUrl = new StringBuilder("https://maps.googleapis.com/maps/api/directions/jsonjson?");
         googleDirectionsUrl.append("origin="+latitude+","+longitude);
         googleDirectionsUrl.append("&destination="+end_latitude+","+end_longitude);
-        googleDirectionsUrl.append("&key="+"AIzaSyCMlkE9KrKYcoPuFLeCTK-GFOgeSoYf_sE");
+        googleDirectionsUrl.append("&key="+"AIzaSyBo7Nxyi8eNbLo96_kd-_eP9-kCvNwpV58");
 
         return googleDirectionsUrl.toString();
     }
@@ -190,7 +190,7 @@ public class MapsDirection extends FragmentActivity implements OnMapReadyCallbac
         googlePlacesUrl.append("&radius=" + PROXIMITY_RADIUS);
         googlePlacesUrl.append("&type=" + nearbyPlace);
         googlePlacesUrl.append("&sensor=true");
-        googlePlacesUrl.append("&key=" + "AIzaSyCMlkE9KrKYcoPuFLeCTK-GFOgeSoYf_sE");
+        googlePlacesUrl.append("&key=" + "AIzaSyBo7Nxyi8eNbLo96_kd-_eP9-kCvNwpV58");
         Log.d("getUrl", googlePlacesUrl.toString());
         return (googlePlacesUrl.toString());
     }
