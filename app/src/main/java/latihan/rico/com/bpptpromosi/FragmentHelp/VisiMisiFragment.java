@@ -30,15 +30,15 @@ public class VisiMisiFragment extends Fragment {
         youTubePlayerView = view.findViewById(R.id.youtube_player_view);
         getLifecycle().addObserver(youTubePlayerView);
 
-//        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-//            @Override
-//            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-//                String videoId = "yc0Gs_D1BDA";
-//                youTubePlayer.loadVideo(videoId, 0);
-//
-//
-//            }
-//        });
+        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+            @Override
+            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                String videoId = "yc0Gs_D1BDA";
+                youTubePlayer.loadVideo(videoId, 0);
+
+
+            }
+        });
         // Inflate the layout for this fragment
         return view;
     }
