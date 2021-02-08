@@ -59,8 +59,8 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
     String nama_sektor, sekor, bidang, alamat, pemilik, deskripsi, logo, status;
     TextView tv_namasektor, tv_sektor, tv_bidang, tv_alamat, tv_pemilik, tv_deskripsi;
     ImageView gambar, iv_icon, iv_centang;
-    private static final String URL_FOTOLISTSEKTOR = Server.URL_API + "ApiListSektorImage.php";
-    private static final String URL_PDF = "https://dpmptsp.tulungagung.go.id/api/android/ApiListSektorPdf.php";
+    private static final String URL_FOTOLISTSEKTOR = Server.URL_API + "ApiListSektorImage";
+    private static final String URL_PDF = "https://dpmptsp.tulungagung.go.id/api/android/ApiListSektorPdf";
     int id_sektor;
     EditText tv_link_pdf;
     CardView btn_pdf,btn_location;
@@ -68,15 +68,15 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
     RecyclerView rv_tahun,rv_triwulan,rv_bulan,rv_image_sektor;
 
 
-    private static final String URL_LAPORAN_TAHUN = Server.URL_API + "ApiListSektorTahun.php";
+    private static final String URL_LAPORAN_TAHUN = Server.URL_API + "ApiListSektorTahun";
     ArrayList<ModelListSektorTahun> modelListSektorTahuns = new ArrayList<>();
     AdapterListSektorTahun adapterListSektorTahun;
 
-    private static final String URL_LAPORAN_TRIWULAN = Server.URL_API + "ApiListSektorTriwulan.php";
+    private static final String URL_LAPORAN_TRIWULAN = Server.URL_API + "ApiListSektorTriwulan";
     ArrayList<ModelListSektorTriwulan> modelListSektorTriwulans = new ArrayList<>();
     AdapterListSektorTriwulan adapterListSektorTriwulan;
 
-    private static final String URL_LAPORAN_BULAN = Server.URL_API + "ApiListSektorBulan.php";
+    private static final String URL_LAPORAN_BULAN = Server.URL_API + "ApiListSektorBulan";
     ArrayList<ModelListSektorBulan> modelListSektorBulans = new ArrayList<>();
     AdapterListSektorBulan adapterListSektorBulan;
 
@@ -197,7 +197,8 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                         Log.d("json", response.toString());
                         temp=0;
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 temp++;
@@ -244,7 +245,8 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                     public void onResponse(String response){
                         Log.d("json", response.toString());
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -320,7 +322,8 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
 
 
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -416,7 +419,8 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
 
                         modelListSektorTriwulans.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -459,7 +463,8 @@ public class DetailActivity extends AppCompatActivity  implements AdapterListSek
                         Log.d("json", response.toString());
                         modelListSektorBulans.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

@@ -50,8 +50,8 @@ public class RealisasiSektorActivity extends AppCompatActivity {
     private static final int PERMISSION_STORAGE_CODE = 1000;
     ArrayList<ModelRealisasiSektor> modelRealisasiSektors = new ArrayList<>();
     AdapterRealisasiSektor adapterRealisasiSektor;
-    private static final String URL_REALISASI_SEKTOR= Server.URL_API + "ApiRealisasiListSektor.php";
-    private static final String URL_REALISASI_PDF= Server.URL_API + "ApiRealisasiPdf.php";
+    private static final String URL_REALISASI_SEKTOR= Server.URL_API + "ApiRealisasiListSektor";
+    private static final String URL_REALISASI_PDF= Server.URL_API + "ApiRealisasiPdf";
 
 
     int id;
@@ -113,7 +113,8 @@ public class RealisasiSektorActivity extends AppCompatActivity {
                     public void onResponse(String response){
                         Log.d("json", response.toString());
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -154,7 +155,8 @@ public class RealisasiSektorActivity extends AppCompatActivity {
                         Log.d("json", response.toString());
 
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

@@ -38,10 +38,12 @@ import latihan.rico.com.bpptpromosi.Adapter.AdapterEvent;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterProspectHome;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektor;
 import latihan.rico.com.bpptpromosi.Adapter.AdapterSektorHome;
+import latihan.rico.com.bpptpromosi.AdapterRealisasi.AdapterRealisasiTahun;
 import latihan.rico.com.bpptpromosi.Model.ModelEvent;
 import latihan.rico.com.bpptpromosi.Model.ModelListSektor;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.Model.ModelSektor;
+import latihan.rico.com.bpptpromosi.ModelRealisasi.ModelRealisasiTahun;
 import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;
 import latihan.rico.com.bpptpromosi.Volley.MySingleton;
@@ -61,9 +63,12 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
     ArrayList<ModelProspect> modelProspects = new ArrayList<>();
     ArrayList<ModelEvent> modelEvents = new ArrayList<>();
     AdapterSektor adapterSektor;
-    private static final String URL_SEKTOR = Server.URL_API + "ApiSektor.php";
-    private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektor.php";
-    private static final String URL_EVENT = Server.URL_API + "ApiEventList.php";
+    private static final String URL_SEKTOR = Server.URL_API + "ApiSektor";
+    private static final String URL_SEKTOR_PROSPECT_LIST = Server.URL_API + "ApiProspectus";
+
+    ArrayList<ModelRealisasiTahun> modelRealisasiTahuns = new ArrayList<>();
+    AdapterRealisasiTahun adapterRealisasiTahun;
+    private static final String URL_REALISASI_TAHUN = Server.URL_API + "ApiRealisasiList";
 
     AdapterProspectHome adapterProspectHome;
     AdapterSektorHome adapterSektorHome;
@@ -100,8 +105,9 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
 
         getsektor();
         getProspectHome();
-        getSektorHome();
-        getEvent();
+        getTahun();
+//        getSektorHome();
+//        getEvent();
 
 
 
@@ -133,7 +139,8 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
                         Log.d("json", response.toString());
 
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -163,35 +170,28 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
 
 
     private void getProspectHome() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_SEKTOR_LIST,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_SEKTOR_PROSPECT_LIST,
                 new Response.Listener<String>() {
                     public void onResponse(String response){
                         Log.d("json", response.toString());
                         modelListSektors.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                if (jsonObject.getString("statusVerifikasi").equals("Terverifikasi")){
+
                                     modelProspects.add(new ModelProspect(
-                                            jsonObject.getInt("id"),
-                                            jsonObject.getInt("id_sektor"),
-                                            jsonObject.getInt("id_subsektor"),
-                                            jsonObject.getString("nama_sektor"),
-                                            jsonObject.getString("alamat_sektor"),
-                                            jsonObject.getString("telepon_sektor"),
-                                            jsonObject.getString("nama_pengelola"),
-                                            jsonObject.getString("deskripsifix"),
-                                            jsonObject.getString("lokasi"),
-                                            jsonObject.getString("latitude"),
-                                            jsonObject.getString("longitude"),
-                                            jsonObject.getString("statusVerifikasi"),
-                                            jsonObject.getString("nama_idsektor"),
-                                            jsonObject.getString("nama_idsubsektor"),
-                                            jsonObject.getString("directory"),
-                                            jsonObject.getString("image")));
-                                }
+                                            jsonObject.getString("id"),
+                                            jsonObject.getString("nama"),
+                                            jsonObject.getString("foto"),
+                                            jsonObject.getString("deskripsi"),
+                                            jsonObject.getString("url"),
+                                            jsonObject.getString("status"),
+                                            jsonObject.getString("created_at"),
+                                            jsonObject.getString("updated_at"),
+                                            jsonObject.getString("created_by")));
 
 
                                 recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
@@ -213,77 +213,116 @@ public class HomeFragment extends Fragment implements MoreActivity.BottomSheetLi
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
-    private void getSektorHome() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_SEKTOR_LIST,
+//    private void getSektorHome() {
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_SEKTOR_LIST,
+//                new Response.Listener<String>() {
+//                    public void onResponse(String response){
+//                        Log.d("json", response.toString());
+//                        modelListSektors.clear();
+//                        try {
+//                            JSONObject jsonObjects = new JSONObject(response);
+//                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+//
+//                                    modelListSektors.add(new ModelListSektor(
+//                                            jsonObject.getInt("id"),
+//                                            jsonObject.getInt("id_sektor"),
+//                                            jsonObject.getInt("id_subsektor"),
+//                                            jsonObject.getString("nama_sektor"),
+//                                            jsonObject.getString("alamat_sektor"),
+//                                            jsonObject.getString("telepon_sektor"),
+//                                            jsonObject.getString("nama_pengelola"),
+//                                            jsonObject.getString("deskripsifix"),
+//                                            jsonObject.getString("lokasi"),
+//                                            jsonObject.getString("latitude"),
+//                                            jsonObject.getString("longitude"),
+//                                            jsonObject.getString("statusVerifikasi"),
+//                                            jsonObject.getString("nama_idsektor"),
+//                                            jsonObject.getString("nama_idsubsektor"),
+//                                            jsonObject.getString("directory"),
+//                                            jsonObject.getString("image")));
+//
+//
+//                                recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+//                                recyclerView2.setHasFixedSize(true);
+//                                adapterSektorHome = new AdapterSektorHome(getContext(), modelListSektors);
+//                                recyclerView2.setAdapter(adapterSektorHome);
+//                                adapterSektorHome.notifyDataSetChanged();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        });
+//        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+//    }
+
+//    private void getEvent() {
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_EVENT,
+//                new Response.Listener<String>() {
+//                    public void onResponse(String response){
+//                        Log.d("json", response.toString());
+//                        modelEvents.clear();
+//                        try {
+//                            JSONObject jsonObjects = new JSONObject(response);
+//                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+//
+//                                modelEvents.add(new ModelEvent(
+//                                        jsonObject.getInt("id"),
+//                                        jsonObject.getString("judul_event"),
+//                                        jsonObject.getString("deskripsifix"),
+//                                        jsonObject.getString("video")));
+//
+//                                recyclerView3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+//                                recyclerView3.setHasFixedSize(true);
+//                                adapterEvent = new AdapterEvent(getContext(), modelEvents);
+//                                recyclerView3.setAdapter(adapterEvent);
+//                                adapterEvent.notifyDataSetChanged();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        });
+//        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+//    }
+
+
+    private void getTahun() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_REALISASI_TAHUN,
                 new Response.Listener<String>() {
                     public void onResponse(String response){
                         Log.d("json", response.toString());
-                        modelListSektors.clear();
+                        modelRealisasiTahuns.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                    modelListSektors.add(new ModelListSektor(
-                                            jsonObject.getInt("id"),
-                                            jsonObject.getInt("id_sektor"),
-                                            jsonObject.getInt("id_subsektor"),
-                                            jsonObject.getString("nama_sektor"),
-                                            jsonObject.getString("alamat_sektor"),
-                                            jsonObject.getString("telepon_sektor"),
-                                            jsonObject.getString("nama_pengelola"),
-                                            jsonObject.getString("deskripsifix"),
-                                            jsonObject.getString("lokasi"),
-                                            jsonObject.getString("latitude"),
-                                            jsonObject.getString("longitude"),
-                                            jsonObject.getString("statusVerifikasi"),
-                                            jsonObject.getString("nama_idsektor"),
-                                            jsonObject.getString("nama_idsubsektor"),
-                                            jsonObject.getString("directory"),
-                                            jsonObject.getString("image")));
-
-
-                                recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
-                                recyclerView2.setHasFixedSize(true);
-                                adapterSektorHome = new AdapterSektorHome(getContext(), modelListSektors);
-                                recyclerView2.setAdapter(adapterSektorHome);
-                                adapterSektorHome.notifyDataSetChanged();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
-    }
-
-    private void getEvent() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_EVENT,
-                new Response.Listener<String>() {
-                    public void onResponse(String response){
-                        Log.d("json", response.toString());
-                        modelEvents.clear();
-                        try {
-                            JSONArray jsonArray =  new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                                modelEvents.add(new ModelEvent(
+                                modelRealisasiTahuns.add(new ModelRealisasiTahun(
                                         jsonObject.getInt("id"),
-                                        jsonObject.getString("judul_event"),
-                                        jsonObject.getString("deskripsifix"),
-                                        jsonObject.getString("video")));
+                                        jsonObject.getString("tahun")));
 
-                                recyclerView3.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false));
+
+                                recyclerView3.setLayoutManager(new GridLayoutManager(getContext(),4));
                                 recyclerView3.setHasFixedSize(true);
-                                adapterEvent = new AdapterEvent(getContext(), modelEvents);
-                                recyclerView3.setAdapter(adapterEvent);
-                                adapterEvent.notifyDataSetChanged();
+                                adapterRealisasiTahun = new AdapterRealisasiTahun(getContext(), modelRealisasiTahuns);
+                                recyclerView3.setAdapter(adapterRealisasiTahun);
+                                adapterRealisasiTahun.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

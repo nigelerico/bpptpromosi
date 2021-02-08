@@ -46,7 +46,7 @@ public class SearchFragment extends Fragment {
     RecyclerView rv_sektor;
     ArrayList<ModelListSektor> modelListSektors = new ArrayList<>();
     AdapterList adapterList;
-    private static final String URL_SEARCH = Server.URL_API + "ApiSearch.php";
+    private static final String URL_SEARCH = Server.URL_API + "ApiSearch";
 
 
     @Override
@@ -96,7 +96,8 @@ public class SearchFragment extends Fragment {
                         Log.d("json", response.toString());
                         modelListSektors.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

@@ -61,7 +61,7 @@ public class AdapterImageEvent  extends RecyclerView.Adapter<AdapterImageEvent.V
     private List<ModelEventImage> modelEventImages;
     onListClickedRowListner listner;
     private ZoomageView iv_image;
-    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail.php";
+    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail";
     private Dialog customDialog;
 
     public AdapterImageEvent(Context mContext, ArrayList<ModelEventImage> modelEventImages, onListClickedRowListner listner){
@@ -126,7 +126,8 @@ public class AdapterImageEvent  extends RecyclerView.Adapter<AdapterImageEvent.V
 
 
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

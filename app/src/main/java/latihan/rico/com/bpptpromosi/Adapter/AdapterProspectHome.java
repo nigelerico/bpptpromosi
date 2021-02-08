@@ -28,7 +28,10 @@ import java.util.Map;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import latihan.rico.com.bpptpromosi.Activity.ActivityDetailEvent;
 import latihan.rico.com.bpptpromosi.Activity.DetailActivity;
+import latihan.rico.com.bpptpromosi.Activity.DetailProspectActivity;
 import latihan.rico.com.bpptpromosi.Model.ModelProspect;
 import latihan.rico.com.bpptpromosi.R;
 import latihan.rico.com.bpptpromosi.Server.Server;
@@ -38,7 +41,6 @@ public class AdapterProspectHome extends RecyclerView.Adapter<AdapterProspectHom
 
     private Context mContext;
     private List<ModelProspect> prospects;
-    private static final String URL_FOTOLISTSEKTOR =  Server.URL_API + "ApiListSektorImage.php";
 
     public AdapterProspectHome(Context mContext, ArrayList<ModelProspect> ModelProspect){
         this.mContext = mContext;
@@ -60,7 +62,7 @@ public class AdapterProspectHome extends RecyclerView.Adapter<AdapterProspectHom
         final ModelProspect modelProspect = prospects.get(position);
 
         ImageLoader imageLoader = MySingleton.getInstance(mContext).getImageLoader();
-        imageLoader.get(prospects.get(position).getImage(), new ImageLoader.ImageListener() {
+        imageLoader.get(prospects.get(position).getFoto(), new ImageLoader.ImageListener() {
             @Override
             public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
                 holder.iv_gambar.setImageBitmap(response.getBitmap());
@@ -72,28 +74,28 @@ public class AdapterProspectHome extends RecyclerView.Adapter<AdapterProspectHom
             }
         });
 
-        holder.tv_nama_sektor.setText(Html.fromHtml(modelProspect.getNama_sektor()));
-        holder.tv_sektor.setText(modelProspect.getMaster_sektor());
-        holder.tv_bidang.setText(modelProspect.getValue());
+        holder.tv_nama_sektor.setText(modelProspect.getNama());
+//        holder.tv_sektor.setText(modelProspect.getMaster_sektor());
+//        holder.tv_bidang.setText(modelProspect.getValue());
 
         holder.cv_sektor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext.getApplicationContext(), DetailActivity.class);
+                Intent intent = new Intent(mContext.getApplicationContext(), DetailProspectActivity.class);
                 intent.putExtra("id", modelProspect.getId());
-                intent.putExtra("id_sektor", modelProspect.getId_sektor());
-                intent.putExtra("id_sub_sektor", modelProspect.getId_subsektor());
-                intent.putExtra("nama_sektor", modelProspect.getNama_sektor());
-                intent.putExtra("sektor", modelProspect.getMaster_sektor());
-                intent.putExtra("bidang", modelProspect.getValue());
-                intent.putExtra("alamat", modelProspect.getAlamat_sektor());
-                intent.putExtra("pemilik", modelProspect.getNama_pengelola());
+                intent.putExtra("nama", modelProspect.getNama());
+                intent.putExtra("foto", modelProspect.getFoto());
                 intent.putExtra("deskripsi", modelProspect.getDeskripsi());
-                intent.putExtra("logo", modelProspect.getLogo());
-                intent.putExtra("status", modelProspect.getStatusVerifikasi());
-                intent.putExtra("lokasi", modelProspect.getLokasi());
-                intent.putExtra("latitude", modelProspect.getLatitude());
-                intent.putExtra("longitude", modelProspect.getLongitude());
+                intent.putExtra("url", modelProspect.getUrl());
+                intent.putExtra("status", modelProspect.getStatus());
+                intent.putExtra("created_at", modelProspect.getCreated_at());
+                intent.putExtra("updated_at", modelProspect.getCreated_at());
+                intent.putExtra("created_by", modelProspect.getCreated_by());
+//                intent.putExtra("logo", modelProspect.getLogo());
+//                intent.putExtra("status", modelProspect.getStatusVerifikasi());
+//                intent.putExtra("lokasi", modelProspect.getLokasi());
+//                intent.putExtra("latitude", modelProspect.getLatitude());
+//                intent.putExtra("longitude", modelProspect.getLongitude());
                 view.getContext().startActivity(intent);
             }
         });
@@ -115,8 +117,8 @@ public class AdapterProspectHome extends RecyclerView.Adapter<AdapterProspectHom
             super(itemView);
             cv_sektor = (CardView) itemView.findViewById(R.id.cv_sektor);
             tv_nama_sektor = (TextView) itemView.findViewById(R.id.tv_nama_sektor);
-            tv_sektor = (TextView) itemView.findViewById(R.id.tv_sektor);
-            tv_bidang = (TextView) itemView.findViewById(R.id.tv_bidang);
+//            tv_sektor = (TextView) itemView.findViewById(R.id.tv_sektor);
+//            tv_bidang = (TextView) itemView.findViewById(R.id.tv_bidang);
             iv_gambar = (ImageView) itemView.findViewById(R.id.iv_gambar);
 
         }

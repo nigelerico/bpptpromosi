@@ -35,7 +35,7 @@ public class FilterSektorActivity extends AppCompatActivity {
     RecyclerView rv_sektor;
     ArrayList<ModelListSektor> modelListSektors = new ArrayList<>();
     AdapterList adapterList;
-    private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektorWhereSektor.php";
+    private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektorWhereSektor";
     String value;
     TextView tv_sektor;
     int id;
@@ -66,7 +66,8 @@ public class FilterSektorActivity extends AppCompatActivity {
                         Log.d("json", response.toString());
 
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

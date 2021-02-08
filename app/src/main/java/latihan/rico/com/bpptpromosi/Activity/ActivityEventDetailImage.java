@@ -30,7 +30,7 @@ import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
 public class ActivityEventDetailImage extends AppCompatActivity {
 
-    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail.php";
+    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail";
     private ZoomageView iv_image;
 
     int id;
@@ -56,13 +56,10 @@ public class ActivityEventDetailImage extends AppCompatActivity {
 
 
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-
-
-
                                 ImageLoader imageLoader = MySingleton.getInstance(getApplicationContext()).getImageLoader();
                                 imageLoader.get( jsonObject.getString("image"), new ImageLoader.ImageListener() {
                                     @Override

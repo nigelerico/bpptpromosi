@@ -61,7 +61,7 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
     RecyclerView rv_image;
     ArrayList<ModelEventImage> modelEventImages = new ArrayList<>();
     AdapterImageEvent adapterImageEvent;
-    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImage.php";
+    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImage";
 
 
     @Override
@@ -69,11 +69,11 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_event);
 
-        Intent intent = getIntent();
-        id = intent.getIntExtra("id", 0);
-        video = intent.getStringExtra("video");
-        judul_event = intent.getStringExtra("judul_event");
-        deskripsi = intent.getStringExtra("deskripsi");
+//        Intent intent = getIntent();
+//        id = intent.getIntExtra("id", 0);
+//        video = intent.getStringExtra("video");
+//        judul_event = intent.getStringExtra("judul_event");
+//        deskripsi = intent.getStringExtra("deskripsi");
 
         progressBar = (ProgressBar) findViewById(R.id.progrss);
         vv = (VideoView) findViewById(R.id.vv);
@@ -83,12 +83,12 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
 
 
 
-        tv_desk.setText(Html.fromHtml(deskripsi));
-        tv_judul.setText(judul_event);
+//        tv_desk.setText(Html.fromHtml(deskripsi));
+//        tv_judul.setText(judul_event);
 
         mediacontroller = new MediaController(this);
         mediacontroller.setAnchorView(vv);
-        String uriPath = video; //update package name
+        String uriPath = "https://www.youtube.com/embed/GOx2HEIkHVE"; //update package name
         uri = Uri.parse(uriPath);
 
         isContinuously = false;
@@ -113,7 +113,7 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
             }
         });
 
-        getImage();
+//        getImage();
     }
 
     public void back(View view){
@@ -127,51 +127,52 @@ public class ActivityDetailEvent extends AppCompatActivity implements AdapterIma
 
 
 
-    private void getImage() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_EVENT_IMAGE,
-                new Response.Listener<String>() {
-                    public void onResponse(String response){
-                        Log.d("json", response.toString());
-
-
-                        try {
-                            JSONArray jsonArray =  new JSONArray(response);
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-
-                                modelEventImages.add(new ModelEventImage(
-                                        jsonObject.getInt("id"),
-                                        jsonObject.getString("image")));
-
-                                rv_image.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,false));
-                                rv_image.setHasFixedSize(true);
-                                adapterImageEvent = new AdapterImageEvent(getApplicationContext(), modelEventImages, ActivityDetailEvent.this);
-                                rv_image.setAdapter(adapterImageEvent);
-                                adapterImageEvent.notifyDataSetChanged();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<>();
-                params.put("id", String.valueOf(id));
-                return params;
-            }
-        };
-        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
-    }
+//    private void getImage() {
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_EVENT_IMAGE,
+//                new Response.Listener<String>() {
+//                    public void onResponse(String response){
+//                        Log.d("json", response.toString());
+//
+//
+//                        try {
+//                            JSONObject jsonObjects = new JSONObject(response);
+//                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+//
+//
+//                                modelEventImages.add(new ModelEventImage(
+//                                        jsonObject.getInt("id"),
+//                                        jsonObject.getString("image")));
+//
+//                                rv_image.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL,false));
+//                                rv_image.setHasFixedSize(true);
+//                                adapterImageEvent = new AdapterImageEvent(getApplicationContext(), modelEventImages, ActivityDetailEvent.this);
+//                                rv_image.setAdapter(adapterImageEvent);
+//                                adapterImageEvent.notifyDataSetChanged();
+//                            }
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        }){
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                HashMap<String, String> params = new HashMap<>();
+//                params.put("id", String.valueOf(id));
+//                return params;
+//            }
+//        };
+//        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+//    }
 
 
 }

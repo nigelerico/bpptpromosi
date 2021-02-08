@@ -42,7 +42,7 @@ public class RealisasiBulanActivity extends AppCompatActivity {
     RecyclerView rv_realisasi_bulan;
     ArrayList<ModelRealisasiBulan> modelRealisasiBulans = new ArrayList<>();
     AdapterRealisasiBulan adapterRealisasiBulan;
-    private static final String URL_REALISASI_BULAN = Server.URL_API + "ApiRealisasiListBulan.php";
+    private static final String URL_REALISASI_BULAN = Server.URL_API + "ApiRealisasiListBulan";
 
     int id;
     String tahun;
@@ -78,7 +78,8 @@ public class RealisasiBulanActivity extends AppCompatActivity {
                         Log.d("json", response.toString());
 
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

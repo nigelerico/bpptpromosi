@@ -56,7 +56,7 @@ public class AdapterRealisasiTahun  extends RecyclerView.Adapter<AdapterRealisas
 
 
 
-        holder.tv_tahun.setText("DATA REALISASI INVESTASI DAERAH PMA/PMDN MELALUI OSS TAHUN "+modelRealisasiTahun.getTahun());
+        holder.tv_tahun.setText("Tahun " + modelRealisasiTahun.getTahun());
 
 
         holder.cv_tahun.setOnClickListener(new View.OnClickListener() {

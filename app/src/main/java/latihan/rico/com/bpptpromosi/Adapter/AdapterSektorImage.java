@@ -38,7 +38,7 @@ public class AdapterSektorImage  extends RecyclerView.Adapter<AdapterSektorImage
 
     private Context mContext;
     private List<ModelSektorImage> modelSektorImages;
-    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail.php";
+    private static final String URL_EVENT_IMAGE = Server.URL_API + "ApiEventImageDetail";
 
 
     public AdapterSektorImage(Context mContext, ArrayList<ModelSektorImage> modelSektorImages){

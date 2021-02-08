@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity implements
               //  toolbar.show();
                 fragment = new SearchFragment();
                 break;
-            case R.id.realisasi_menu:
-                //  toolbar.show();
-                fragment = new RealisasiFragment();
-                break;
+//            case R.id.realisasi_menu:
+//                //  toolbar.show();
+//                fragment = new RealisasiFragment();
+//                break;
             case R.id.help_menu:
                // toolbar.show();
                 fragment = new HelpFragment();

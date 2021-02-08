@@ -37,7 +37,7 @@ public class RealisasiFragment extends Fragment {
     RecyclerView rv_tahun;
     ArrayList<ModelRealisasiTahun> modelRealisasiTahuns = new ArrayList<>();
     AdapterRealisasiTahun adapterRealisasiTahun;
-    private static final String URL_REALISASI_TAHUN = Server.URL_API + "ApiRealisasiList.php";
+    private static final String URL_REALISASI_TAHUN = Server.URL_API + "ApiRealisasiList";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -58,7 +58,8 @@ public class RealisasiFragment extends Fragment {
                         Log.d("json", response.toString());
                      modelRealisasiTahuns.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

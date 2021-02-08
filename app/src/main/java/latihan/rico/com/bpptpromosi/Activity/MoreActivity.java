@@ -38,7 +38,7 @@ public class MoreActivity extends BottomSheetDialogFragment{
     RecyclerView rv_sektor;
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
     AdapterSektor adapterSektor;
-    private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull.php";
+    private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull";
 
     @Nullable
     @Override
@@ -80,7 +80,8 @@ public class MoreActivity extends BottomSheetDialogFragment{
                         Log.d("json", response.toString());
 
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

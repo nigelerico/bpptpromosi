@@ -39,7 +39,7 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> 
 
     private Context mContext;
     private List<ModelEvent> events;
-    private static final String URL_IMAGE_EVENT =  Server.URL_API + "ApiEventImage.php";
+    private static final String URL_IMAGE_EVENT =  Server.URL_API + "ApiEventImage";
 
     public AdapterEvent(Context mContext, ArrayList<ModelEvent> modelEvents){
         this.mContext = mContext;
@@ -65,7 +65,8 @@ public class AdapterEvent extends RecyclerView.Adapter<AdapterEvent.ViewHolder> 
 
 
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 

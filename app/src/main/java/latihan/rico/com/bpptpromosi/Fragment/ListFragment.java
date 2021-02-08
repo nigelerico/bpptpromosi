@@ -71,9 +71,9 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
 
     AdapterSektorList adapterSektorList;
     RecyclerView recyeview_sektor;
-    private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektor.php";
-    private static final String URL_SEKTOR_LIST_WHERE = Server.URL_API + "ApiListSektorWhereSektor.php";
-    private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull.php";
+    private static final String URL_SEKTOR_LIST = Server.URL_API + "ApiListSektor";
+    private static final String URL_SEKTOR_LIST_WHERE = Server.URL_API + "ApiListSektorWhereSektor";
+    private static final String URL_SEKTOR_FULL = Server.URL_API + "ApiSektorFull";
 
     ArrayList<ModelSektor> mSektor = new ArrayList<>();
         SwipeRefreshLayout swipe;
@@ -137,7 +137,9 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                         Log.d("json", response.toString());
                         modelListSektors.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
+
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -245,7 +247,8 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                         Log.d("json", response.toString());
                         mSektor.clear();
                         try {
-                            JSONArray jsonArray =  new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -291,7 +294,8 @@ public class ListFragment extends Fragment implements  AdapterSektorList.onListC
                         temp=0;
                         modelListSektors.clear();
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            JSONObject jsonObjects = new JSONObject(response);
+                            JSONArray jsonArray = jsonObjects.getJSONArray("data");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 temp++;
