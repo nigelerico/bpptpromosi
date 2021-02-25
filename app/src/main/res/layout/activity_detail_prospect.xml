@@ -131,6 +131,29 @@
                             app:autoPlay="false"
                             app:useWebUi="true" />
 
+                        <TextView
+                            android:id="@+id/tv_deskripsi_tittle"
+                            android:layout_below="@id/youtube_player_view_detail"
+                            android:layout_alignParentLeft="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorBlack"
+                            android:text="Deskripsi"
+                            android:textSize="10pt"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_deskripsi"
+                            android:layout_below="@id/tv_deskripsi_tittle"
+                            android:layout_alignParentLeft="true"
+                            android:textColor="@color/colorBlack"
+                            android:text="Deskripsi"
+                            android:textSize="16sp"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
 
                     </RelativeLayout>
 

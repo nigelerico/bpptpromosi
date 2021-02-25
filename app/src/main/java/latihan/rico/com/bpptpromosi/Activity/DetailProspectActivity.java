@@ -22,9 +22,9 @@ import latihan.rico.com.bpptpromosi.Volley.MySingleton;
 
 public class DetailProspectActivity extends AppCompatActivity {
 
-    String nama, foto , url;
+    String nama, foto , url, deskripsi;
     ImageView gambar_sekor;
-    TextView tv_nama_sektor;
+    TextView tv_nama_sektor, tv_deskripsi;
     YouTubePlayerView youTubePlayerView;
 
     @Override
@@ -36,12 +36,20 @@ public class DetailProspectActivity extends AppCompatActivity {
         getLifecycle().addObserver(youTubePlayerView);
         tv_nama_sektor = (TextView) findViewById(R.id.tv_nama_sektor);
         gambar_sekor = (ImageView) findViewById(R.id.iv_gambar_sektor);
+        tv_deskripsi = (TextView) findViewById(R.id.tv_deskripsi);
 
 
         Intent intent = getIntent();
         nama = intent.getStringExtra("nama");
         foto = intent.getStringExtra("foto");
+        deskripsi = intent.getStringExtra("deskripsi");
         url = intent.getStringExtra("url").substring(30, 41);
+
+        if(deskripsi.isEmpty()){
+            tv_deskripsi.setText("Tidak Ada Deskripsi");
+        } else {
+            tv_deskripsi.setText(deskripsi);
+        }
 
 
         tv_nama_sektor.setText(nama);
