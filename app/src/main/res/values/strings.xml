@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SIINTA</string>
+    <string name="app_name">E-Invesment DPMTSP Tulungagung</string>
     <string name="home">Home</string>
     <string name="list">List</string>
     <string name="search">Search</string>
@@ -13,6 +13,6 @@
     <string name="highlight_sektor">Highlight Sektor</string>
     <string name="event">Events</string>
     <string name="google_maps_key">AIzaSyBo7Nxyi8eNbLo96_kd-_eP9-kCvNwpV58</string>
-    <string name="data_realisasi_oss">Data Realisasi OSS</string>
+    <string name="data_realisasi_oss">Data Realisasi Investasi Kabupaten Tulungagung</string>
     <string name="detail_prospect">Detail Prospect</string>
 </resources>

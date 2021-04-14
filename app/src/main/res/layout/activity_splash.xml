@@ -11,14 +11,44 @@
         android:layout_centerVertical="true"
         android:gravity="center">
 
-
         <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:src="@drawable/ic_sinta_nobg"/>
+            android:layout_height="150dp"
+            android:src="@drawable/logo_kab_tulungagung"/>
 
+        <TextView
+            android:id="@+id/tv"
+            android:text="E-Invesment"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:textSize="17pt"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@+id/logo"/>
+        <TextView
+            android:id="@+id/tv2"
+            android:text="Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv"/>
 
+        <TextView
+            android:id="@+id/tv3"
+            android:text="Kabupaten Tulungagung"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:gravity="center"
+            android:textColor="@color/colorBlack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv2"/>
 
     </RelativeLayout>
 </RelativeLayout>
