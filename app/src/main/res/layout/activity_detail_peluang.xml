@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        >
+        <RelativeLayout
+            android:id="@+id/rl1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <ImageView
+                android:onClick="back"
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_arrow_back_white_24dp"/>
+
+            <RelativeLayout
+                android:id="@+id/rl2"
+                android:layout_marginLeft="25dp"
+                android:layout_toRightOf="@+id/iv_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tv_nama_hotel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_peluang"
+                    android:textSize="8pt"
+                    android:textColor="@color/colorWhite"
+                    android:textStyle="bold"/>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_gambar"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_image_sektor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:nestedScrollingEnabled="false"
+                    />
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_info"
+                android:layout_below="@id/rl_gambar"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/label_info"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorBlack"
+                            android:text="Informasi"
+                            android:textSize="10pt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_nama_sektor"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/label_info"
+                            android:layout_marginLeft="5dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/tv_luastanah"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_below="@id/tv_nama_sektor"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_estimasi"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_below="@id/tv_luastanah"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/tv_email"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_estimasi"
+                            android:layout_marginLeft="5dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/tv_alamat"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_email"
+                            android:layout_marginLeft="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_status"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_alamat"
+                            android:layout_marginLeft="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_kontak"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_status"
+                            android:layout_marginLeft="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_website"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_kontak"
+                            android:layout_marginLeft="5dp"
+                            />
+
+
+                        <TextView
+                            android:id="@+id/tv_skema"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_website"
+                            android:layout_marginLeft="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/tv_nama_kontak"
+                            android:textColor="@color/colorBlack"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_skema"
+                            android:layout_marginLeft="5dp"
+                            />
+
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/btn_location"
+                            app:cardCornerRadius="10dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            app:cardUseCompatPadding="true"
+                            android:layout_below="@id/tv_nama_kontak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorLightBlue">
+
+                            <TextView
+                                android:id="@+id/tv_location"
+                                android:text="Location"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                android:textColor="@color/colorWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                        </androidx.cardview.widget.CardView>
+
+
+                        <!--                    <androidx.cardview.widget.CardView-->
+                        <!--                        android:id="@+id/btn_pdf"-->
+                        <!--                        app:cardCornerRadius="10dp"-->
+                        <!--                        android:layout_alignParentBottom="true"-->
+                        <!--                        android:layout_alignParentRight="true"-->
+                        <!--                        android:layout_marginRight="10dp"-->
+                        <!--                        android:layout_marginBottom="10dp"-->
+                        <!--                        app:cardUseCompatPadding="true"-->
+                        <!--                        android:layout_below="@id/tv_nama_kontak"-->
+                        <!--                        android:layout_width="wrap_content"-->
+                        <!--                        android:layout_height="wrap_content"-->
+                        <!--                        android:backgroundTint="@color/colorLightBlue">-->
+
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/tv_file"-->
+                        <!--                            android:text="PDF"-->
+                        <!--                            android:paddingRight="20dp"-->
+                        <!--                            android:paddingLeft="20dp"-->
+                        <!--                            android:paddingTop="5dp"-->
+                        <!--                            android:paddingBottom="5dp"-->
+                        <!--                            android:textColor="@color/colorWhite"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content"/>-->
+
+                        <!--                    </androidx.cardview.widget.CardView>-->
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_deskripsi"
+                android:padding="5dp"
+                android:layout_below="@+id/rl_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    app:cardCornerRadius="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardUseCompatPadding="true">
+
+                    <RelativeLayout
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/label_desk"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentLeft="true"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorBlack"
+                            android:text="Deskripsi"
+                            android:textSize="10pt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:id="@+id/tv_desk"
+                            android:text="Lorem Ipsum"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/colorBlack"
+                            android:layout_below="@+id/label_desk"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

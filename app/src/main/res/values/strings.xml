@@ -15,4 +15,13 @@
     <string name="google_maps_key">AIzaSyBo7Nxyi8eNbLo96_kd-_eP9-kCvNwpV58</string>
     <string name="data_realisasi_oss">Data Realisasi Investasi Kabupaten Tulungagung</string>
     <string name="detail_prospect">Detail Prospect</string>
+    <string name="peluang_investasi">Peluang Investasi</string>
+    <string name="i_ipro">I-IPRO</string>
+    <string name="tentang_lahan">Tentang Lahan</string>
+    <string name="analisa_investasi">Analisa Investasi</string>
+    <string name="kapasitas_produksi">Kapasitas Produksi</string>
+    <string name="aspek_teknis_pendukung">Aspek Teknis Pendukung</string>
+    <string name="detail_i_ipro">Detail I-IPRO</string>
+    <string name="detail_lahan">Detail Lahan</string>
+    <string name="detail_peluang">Detail Peluang</string>
 </resources>
